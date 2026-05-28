@@ -7,545 +7,513 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
 <style>
+
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--bg:#0d0d0f;--bg2:#15151a;--card:rgba(255,255,255,0.06);--border:rgba(255,255,255,0.10);--accent:#7b4dff;--accent2:#b86bff;--grad:linear-gradient(135deg,#5a2dff,#7b4dff);--glow:rgba(123,77,255,0.35);--text:#fff;--muted:#bbb;--dim:#666;}
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden;}
+:root{
+  --bg:#09090b;--bg2:#111116;--bg3:#18181f;
+  --card:rgba(255,255,255,.045);--card2:rgba(255,255,255,.075);
+  --border:rgba(255,255,255,.09);--border2:rgba(255,255,255,.14);
+  --accent:#7c3aed;--accent2:#a78bfa;--accent3:#c4b5fd;
+  --grad:linear-gradient(135deg,#5b21b6,#7c3aed);
+  --grad2:linear-gradient(135deg,#7c3aed,#a78bfa);
+  --glow:rgba(124,58,237,.3);
+  --text:#f8fafc;--muted:#94a3b8;--dim:#475569;
+  --starter:#3b82f6;--starter-bg:rgba(59,130,246,.12);--starter-border:rgba(59,130,246,.3);
+  --pro:#10b981;--pro-bg:rgba(16,185,129,.12);--pro-border:rgba(16,185,129,.3);
+  --elite:#f59e0b;--elite-bg:rgba(245,158,11,.12);--elite-border:rgba(245,158,11,.3);
+  --radius:14px;--radius-sm:10px;--radius-lg:20px;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,"Inter",system-ui,"Segoe UI",sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
-/* ── LANDING ── */
+/* LANDING */
 #landing{min-height:100vh;}
-.l-nav{display:flex;align-items:center;justify-content:space-between;padding:22px 60px;background:rgba(13,13,15,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
-.logo{font-weight:800;font-size:20px;letter-spacing:.08em;background:linear-gradient(135deg,#8b5cf6,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.btn-ghost{padding:10px 22px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;background:var(--card);border:1px solid rgba(255,255,255,.18);color:#fff;transition:.2s;}
-.btn-ghost:hover{background:rgba(255,255,255,.1);}
-.btn-primary{padding:10px 22px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;background:var(--grad);border:none;color:#fff;box-shadow:0 6px 18px var(--glow);transition:.2s;}
-.btn-primary:hover{transform:translateY(-2px);}
-.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-.l-hero{padding:80px 60px 60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;background:radial-gradient(circle at 15% 40%,rgba(124,58,237,.4),transparent 60%),radial-gradient(circle at 85% 30%,rgba(37,99,235,.3),transparent 60%);}
-.l-h1{font-size:80px;font-weight:900;letter-spacing:-2px;line-height:1.02;margin-bottom:22px;}
-.l-sub{font-size:16px;color:var(--muted);line-height:1.7;max-width:400px;margin-bottom:34px;}
-.l-cta{display:flex;gap:14px;}
-.btn-cta{padding:14px 30px;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border:none;color:#fff;box-shadow:0 0 20px rgba(139,92,246,.5);text-transform:uppercase;letter-spacing:.05em;transition:.25s;}
-.btn-cta:hover{transform:translateY(-3px);}
-.btn-cta-out{padding:14px 30px;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;background:var(--card);border:1px solid rgba(255,255,255,.2);color:#fff;text-transform:uppercase;letter-spacing:.05em;transition:.25s;}
-.btn-cta-out:hover{background:rgba(255,255,255,.1);transform:translateY(-2px);}
-.l-card{background:var(--card);backdrop-filter:blur(18px);border-radius:22px;border:1px solid var(--border);padding:38px;box-shadow:0 12px 40px rgba(0,0,0,.4);animation:float 6s ease-in-out infinite;}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.l-card h2{font-size:44px;font-weight:900;letter-spacing:-1px;line-height:1.05;margin-bottom:18px;background:linear-gradient(135deg,#8b5cf6,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.l-card p{font-size:16px;line-height:1.8;color:rgba(255,255,255,.85);}
+.l-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 60px;background:rgba(9,9,11,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
+.logo{font-weight:800;font-size:19px;letter-spacing:.06em;background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.btn-ghost{padding:9px 20px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--border2);color:var(--muted);transition:.2s;}
+.btn-ghost:hover{color:#fff;border-color:rgba(255,255,255,.28);}
+.btn-primary{padding:9px 20px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;background:var(--grad);border:none;color:#fff;transition:.2s;}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px);}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;}
+.l-hero{padding:90px 60px 70px;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;background:radial-gradient(ellipse at 10% 50%,rgba(124,58,237,.35),transparent 55%),radial-gradient(ellipse at 90% 20%,rgba(59,130,246,.2),transparent 55%);}
+.l-h1{font-size:72px;font-weight:900;letter-spacing:-2.5px;line-height:1;margin-bottom:20px;}
+.l-sub{font-size:15px;color:var(--muted);line-height:1.75;max-width:380px;margin-bottom:32px;}
+.l-cta{display:flex;gap:12px;}
+.btn-cta{padding:13px 28px;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;background:var(--grad);border:none;color:#fff;box-shadow:0 0 24px rgba(124,58,237,.45);letter-spacing:.02em;transition:.25s;}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(124,58,237,.6);}
+.btn-cta-out{padding:13px 28px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;background:transparent;border:1px solid var(--border2);color:var(--muted);transition:.25s;}
+.btn-cta-out:hover{color:#fff;border-color:rgba(255,255,255,.3);}
+.l-card{background:rgba(255,255,255,.04);backdrop-filter:blur(20px);border-radius:22px;border:1px solid var(--border);padding:40px;box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.03);animation:float 6s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.l-card h2{font-size:38px;font-weight:900;letter-spacing:-1px;line-height:1.08;margin-bottom:16px;background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.l-card p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.7);}
 .l-testi{padding:60px;border-top:1px solid var(--border);}
-.testi-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px;font-weight:600;}
-.testi-title{font-size:26px;font-weight:800;margin-bottom:36px;}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.tc{background:rgba(15,20,40,.9);border-radius:18px;padding:26px;border:1px solid var(--border);transition:.2s;}
-.tc:hover{border-color:rgba(123,77,255,.4);}
-.tc-stars{color:var(--accent2);font-size:13px;margin-bottom:12px;letter-spacing:2px;}
-.tc-text{font-size:14px;line-height:1.75;color:rgba(255,255,255,.75);margin-bottom:18px;}
+.testi-tag{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px;font-weight:700;}
+.testi-title{font-size:24px;font-weight:800;margin-bottom:32px;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.tc{background:rgba(15,15,25,.8);border-radius:16px;padding:24px;border:1px solid var(--border);transition:.2s;}
+.tc:hover{border-color:rgba(124,58,237,.35);}
+.tc-stars{font-size:12px;margin-bottom:10px;letter-spacing:1px;color:#fbbf24;}
+.tc-text{font-size:13px;line-height:1.75;color:rgba(255,255,255,.65);margin-bottom:16px;}
 .tc-author{display:flex;align-items:center;gap:10px;}
-.tc-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
-.av1{background:rgba(90,45,255,.3);color:#c4b6f9;}
-.av2{background:rgba(37,99,235,.3);color:#93c5fd;}
-.av3{background:rgba(184,107,255,.2);color:#e9d5ff;}
-.tc-name{font-size:13px;font-weight:700;}
-.tc-role{font-size:11px;color:var(--dim);margin-top:1px;}
+.tc-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.av1{background:rgba(124,58,237,.3);color:#c4b5fd;}.av2{background:rgba(59,130,246,.3);color:#93c5fd;}.av3{background:rgba(167,139,250,.2);color:#e9d5ff;}
+.tc-name{font-size:12px;font-weight:700;}.tc-role{font-size:11px;color:var(--dim);margin-top:1px;}
 
-/* ── PAGES ── */
+/* PAGES */
 .page{display:none;position:fixed;inset:0;z-index:100;justify-content:center;align-items:center;}
 .page.active{display:flex;}
 
-/* ── AUTH ── */
-.auth-bg{background:radial-gradient(circle at 20% 30%,rgba(124,58,237,.5),transparent 60%),radial-gradient(circle at 80% 70%,rgba(37,99,235,.4),transparent 60%),var(--bg);}
-.auth-card{background:rgba(18,18,22,.75);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.09);padding:44px;border-radius:18px;width:420px;box-shadow:0 0 60px rgba(0,0,0,.5);animation:fadeUp .5s ease;position:relative;z-index:1;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.auth-card h1{font-size:28px;font-weight:800;margin-bottom:26px;}
-.auth-input{width:100%;padding:14px;margin-bottom:14px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:#fff;font-size:15px;outline:none;transition:.2s;}
-.auth-input:focus{border-color:var(--accent);background:rgba(255,255,255,.1);}
-.auth-input::placeholder{color:#555;}
-.auth-btn{width:100%;padding:15px;background:var(--grad);border:none;border-radius:12px;color:#fff;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px var(--glow);transition:.25s;}
-.auth-btn:hover{transform:translateY(-2px);}
-.auth-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-.auth-switch{margin-top:16px;color:#aaa;text-align:center;font-size:13px;}
+/* AUTH */
+.auth-bg{background:radial-gradient(ellipse at 20% 30%,rgba(124,58,237,.4),transparent 55%),radial-gradient(ellipse at 80% 70%,rgba(59,130,246,.3),transparent 55%),var(--bg);}
+.auth-card{background:rgba(17,17,22,.85);backdrop-filter:blur(24px);border:1px solid var(--border);padding:44px;border-radius:20px;width:420px;box-shadow:0 0 80px rgba(0,0,0,.6);animation:fadeUp .45s ease;position:relative;z-index:1;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.auth-card h1{font-size:26px;font-weight:800;margin-bottom:24px;letter-spacing:-.5px;}
+.auth-input{width:100%;padding:13px 15px;margin-bottom:12px;border-radius:11px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:#fff;font-size:14px;outline:none;transition:.2s;}
+.auth-input:focus{border-color:var(--accent);background:rgba(255,255,255,.07);}
+.auth-input::placeholder{color:var(--dim);}
+.auth-btn{width:100%;padding:14px;background:var(--grad);border:none;border-radius:11px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:.25s;}
+.auth-btn:hover{opacity:.9;transform:translateY(-1px);}
+.auth-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.auth-switch{margin-top:14px;color:var(--muted);text-align:center;font-size:13px;}
 .auth-switch a{color:var(--accent2);font-weight:600;cursor:pointer;}
-.auth-err{color:#f87171;font-size:13px;margin-bottom:12px;text-align:center;min-height:18px;}
-.rem-row{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
-.toggle{position:relative;width:42px;height:22px;flex-shrink:0;}
+.auth-err{color:#f87171;font-size:12px;margin-bottom:10px;text-align:center;min-height:16px;}
+.rem-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.toggle{position:relative;width:40px;height:22px;flex-shrink:0;}
 .toggle input{opacity:0;width:0;height:0;}
-.sl{position:absolute;cursor:pointer;inset:0;background:#2a2a2a;border-radius:20px;transition:.3s;}
-.sl:before{position:absolute;content:"";height:16px;width:16px;left:3px;bottom:3px;background:#555;border-radius:50%;transition:.3s;}
+.sl{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,.1);border-radius:20px;transition:.3s;}
+.sl:before{position:absolute;content:"";height:16px;width:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s;opacity:.4;}
 input:checked+.sl{background:var(--grad);}
-input:checked+.sl:before{transform:translateX(20px);background:#fff;}
-.rem-label{font-size:13px;color:var(--dim);}
-.back-btn{position:absolute;top:18px;left:18px;background:var(--card);border:1px solid var(--border);color:var(--muted);padding:7px 14px;border-radius:9px;cursor:pointer;font-size:12px;}
+input:checked+.sl:before{transform:translateX(18px);opacity:1;}
+.rem-label{font-size:13px;color:var(--muted);}
+.back-btn{position:absolute;top:16px;left:16px;background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:12px;}
 .back-btn:hover{color:#fff;}
 
-/* ── ONBOARDING ── */
-.ob-page{background:radial-gradient(circle at 15% 30%,rgba(124,58,237,.45),transparent 60%),radial-gradient(circle at 85% 70%,rgba(37,99,235,.3),transparent 60%),var(--bg);flex-direction:column;align-items:center;justify-content:flex-start;padding:36px 20px 0;overflow:hidden;}
-.ob-head{width:100%;max-width:620px;text-align:center;margin-bottom:20px;flex-shrink:0;}
-.ob-title{font-size:22px;font-weight:800;margin-bottom:12px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.prog-bar{width:100%;height:6px;background:rgba(255,255,255,.08);border-radius:20px;overflow:hidden;}
+/* ONBOARDING */
+.ob-page{background:radial-gradient(ellipse at 15% 30%,rgba(124,58,237,.4),transparent 55%),radial-gradient(ellipse at 85% 70%,rgba(59,130,246,.25),transparent 55%),var(--bg);flex-direction:column;align-items:center;justify-content:flex-start;padding:32px 20px 0;overflow:hidden;}
+.ob-head{width:100%;max-width:580px;text-align:center;margin-bottom:20px;flex-shrink:0;}
+.ob-title{font-size:20px;font-weight:800;margin-bottom:12px;background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.prog-bar{width:100%;height:4px;background:rgba(255,255,255,.07);border-radius:20px;overflow:hidden;}
 .prog-fill{height:100%;background:var(--grad);border-radius:20px;transition:width .4s ease;}
-.chat-wrap{width:100%;max-width:620px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;flex:1;padding-bottom:16px;}
-.chat-wrap::-webkit-scrollbar{width:4px;}
-.chat-wrap::-webkit-scrollbar-thumb{background:rgba(123,77,255,.25);border-radius:4px;}
-.b-ai{background:rgba(255,255,255,.08);padding:16px 20px;border-radius:16px;max-width:85%;font-size:15px;line-height:1.65;border:1px solid rgba(255,255,255,.07);animation:bIn .3s ease;word-wrap:break-word;}
-.b-user{background:rgba(123,77,255,.35);border:1px solid rgba(123,77,255,.45);padding:13px 18px;border-radius:16px;max-width:85%;align-self:flex-end;font-size:15px;animation:bIn .3s ease;word-wrap:break-word;}
-@keyframes bIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.typing{display:flex;gap:5px;padding:12px 16px;align-items:center;}
-.dot{width:7px;height:7px;background:rgba(255,255,255,.4);border-radius:50%;animation:bounce 1.2s ease infinite;}
+.chat-wrap{width:100%;max-width:580px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;flex:1;padding-bottom:12px;}
+.chat-wrap::-webkit-scrollbar{width:3px;}
+.chat-wrap::-webkit-scrollbar-thumb{background:rgba(124,58,237,.2);border-radius:4px;}
+.b-ai{background:rgba(255,255,255,.06);padding:14px 18px;border-radius:14px;max-width:85%;font-size:14px;line-height:1.65;border:1px solid var(--border);animation:bIn .3s ease;word-wrap:break-word;}
+.b-user{background:rgba(124,58,237,.3);border:1px solid rgba(124,58,237,.5);padding:12px 16px;border-radius:14px;max-width:85%;align-self:flex-end;font-size:14px;animation:bIn .3s ease;word-wrap:break-word;}
+@keyframes bIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.typing{display:flex;gap:4px;padding:10px 14px;align-items:center;}
+.dot{width:6px;height:6px;background:rgba(255,255,255,.35);border-radius:50%;animation:bounce 1.2s ease infinite;}
 .dot:nth-child(2){animation-delay:.2s;}.dot:nth-child(3){animation-delay:.4s;}
-@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}}
-.ob-input-area{width:100%;max-width:620px;padding:16px 0 24px;flex-shrink:0;}
-.ob-row{display:flex;gap:10px;width:100%;}
-.ob-in{flex:1;padding:13px 16px;border-radius:13px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);color:#fff;font-size:15px;outline:none;transition:.2s;}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+.ob-input-area{width:100%;max-width:580px;padding:14px 0 22px;flex-shrink:0;}
+.ob-row{display:flex;gap:8px;width:100%;}
+.ob-in{flex:1;padding:12px 15px;border-radius:11px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:#fff;font-size:14px;outline:none;transition:.2s;}
 .ob-in:focus{border-color:var(--accent);}
-.ob-in::placeholder{color:#555;}
-.ob-btn{padding:13px 22px;border-radius:13px;background:var(--grad);border:none;color:#fff;font-weight:700;font-size:14px;cursor:pointer;transition:.2s;white-space:nowrap;}
-.ob-btn:hover{transform:translateY(-1px);}
-.ob-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
-.ob-signout{position:absolute;top:18px;right:18px;background:var(--card);border:1px solid var(--border);color:var(--muted);padding:7px 14px;border-radius:9px;cursor:pointer;font-size:12px;}
-.ob-signout:hover{color:#fff;}
+.ob-in::placeholder{color:var(--dim);}
+.ob-btn{padding:12px 20px;border-radius:11px;background:var(--grad);border:none;color:#fff;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;}
+.ob-btn:disabled{opacity:.4;cursor:not-allowed;}
+.ob-signout{position:absolute;top:16px;right:16px;background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:12px;}
 
-/* ── DASHBOARD ── */
+/* DASHBOARD SHELL */
 .dash-page{background:var(--bg);flex-direction:column;align-items:stretch;justify-content:flex-start;overflow:hidden;}
-.d-nav{display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:60px;background:var(--bg2);border-bottom:1px solid var(--border);flex-shrink:0;}
-.d-nav-l{display:flex;align-items:center;gap:14px;}
-.ham{background:var(--card);border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;}
-.ham:hover{color:#fff;background:rgba(255,255,255,.1);}
-.d-logo{font-weight:800;font-size:18px;letter-spacing:.08em;background:linear-gradient(135deg,#8b5cf6,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.d-nav-r{display:flex;align-items:center;gap:10px;}
-.d-pill{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:50px;padding:5px 14px 5px 5px;}
-.d-av{width:28px;height:28px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
-.d-uname{font-size:13px;font-weight:600;}
-.d-so{background:transparent;border:1px solid rgba(255,255,255,.14);color:var(--muted);padding:6px 14px;border-radius:9px;cursor:pointer;font-size:12px;transition:.2s;}
-.d-so:hover{color:#fff;border-color:rgba(255,255,255,.28);}
-.d-body{display:flex;height:calc(100vh - 60px);overflow:hidden;}
-.d-sidebar{width:210px;background:var(--bg2);border-right:1px solid var(--border);padding:18px 12px;display:flex;flex-direction:column;gap:3px;overflow-y:auto;flex-shrink:0;transition:width .25s ease,padding .25s ease,opacity .2s ease;}
+.d-nav{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px;background:var(--bg2);border-bottom:1px solid var(--border);flex-shrink:0;z-index:20;}
+.d-nav-l{display:flex;align-items:center;gap:12px;}
+.ham{background:transparent;border:1px solid var(--border);color:var(--muted);width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;}
+.ham:hover{color:#fff;border-color:var(--border2);}
+.d-logo{font-weight:800;font-size:16px;letter-spacing:.1em;background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.d-nav-r{display:flex;align-items:center;gap:8px;}
+.d-pill{display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--border);border-radius:50px;padding:4px 12px 4px 4px;}
+.d-av{width:26px;height:26px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0;}
+.d-uname{font-size:12px;font-weight:600;color:var(--text);}
+.d-so{background:transparent;border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:8px;cursor:pointer;font-size:12px;transition:.2s;}
+.d-so:hover{color:#fff;border-color:var(--border2);}
+.plan-chip{padding:3px 9px;border-radius:50px;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;}
+.plan-chip.free{background:rgba(124,58,237,.2);color:var(--accent3);border:1px solid rgba(124,58,237,.3);}
+.plan-chip.starter{background:rgba(59,130,246,.18);color:#93c5fd;border:1px solid rgba(59,130,246,.3);}
+.plan-chip.pro{background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.3);}
+.plan-chip.elite{background:rgba(245,158,11,.15);color:#fcd34d;border:1px solid rgba(245,158,11,.3);}
+
+/* SIDEBAR */
+.d-body{display:flex;height:calc(100vh - 56px);overflow:hidden;}
+.d-sidebar{width:220px;background:var(--bg2);border-right:1px solid var(--border);padding:16px 10px 20px;display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0;transition:width .25s ease,padding .25s ease,opacity .2s ease;}
 .d-sidebar.collapsed{width:0;padding:0;opacity:0;overflow:hidden;}
-.sb-lbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);padding:14px 10px 6px;font-weight:600;white-space:nowrap;}
-.sb-btn{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer;transition:.2s;color:var(--muted);font-size:13px;font-weight:500;border:none;background:transparent;width:100%;text-align:left;white-space:nowrap;}
+.d-sidebar::-webkit-scrollbar{width:0;}
+.sb-plan-card{margin:0 4px 12px;border-radius:10px;padding:10px 12px;}
+.sb-plan-card.free{background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);}
+.sb-plan-card.starter{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);}
+.sb-plan-card.pro{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);}
+.sb-plan-card.elite{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);}
+.sb-plan-name{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px;}
+.sb-plan-sub{font-size:10px;color:var(--muted);line-height:1.4;}
+.sb-plan-card.free .sb-plan-name{color:var(--accent3);}
+.sb-plan-card.starter .sb-plan-name{color:#93c5fd;}
+.sb-plan-card.pro .sb-plan-name{color:#6ee7b7;}
+.sb-plan-card.elite .sb-plan-name{color:#fcd34d;}
+
+/* Trial switcher in sidebar */
+.sb-trial-switcher{margin:0 4px 12px;background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:10px;padding:8px;}
+.sb-trial-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:6px;padding:0 2px;}
+.sb-trial-tabs{display:flex;flex-direction:column;gap:2px;}
+.sb-trial-tab{padding:7px 10px;border-radius:7px;cursor:pointer;font-size:12px;font-weight:600;transition:.15s;border:none;width:100%;text-align:left;display:flex;align-items:center;gap:8px;color:var(--muted);background:transparent;}
+.sb-trial-tab:hover{background:rgba(255,255,255,.05);color:#fff;}
+.sb-trial-tab.active-starter{background:rgba(59,130,246,.18);color:#93c5fd;}
+.sb-trial-tab.active-pro{background:rgba(16,185,129,.18);color:#6ee7b7;}
+.sb-trial-tab.active-elite{background:rgba(245,158,11,.18);color:#fcd34d;}
+.sb-trial-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.dot-starter{background:#3b82f6;}.dot-pro{background:#10b981;}.dot-elite{background:#f59e0b;}
+
+.sb-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);padding:14px 12px 5px;font-weight:700;white-space:nowrap;}
+.sb-btn{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:9px;cursor:pointer;transition:.15s;color:var(--muted);font-size:13px;font-weight:500;border:none;background:transparent;width:100%;text-align:left;white-space:nowrap;position:relative;}
 .sb-btn:hover{background:rgba(255,255,255,.05);color:#fff;}
-.sb-btn.active{background:rgba(123,77,255,.18);color:#fff;border:1px solid rgba(123,77,255,.25);}
-.sb-btn svg{width:16px;height:16px;flex-shrink:0;opacity:.6;}
+.sb-btn.active{background:rgba(124,58,237,.15);color:#fff;font-weight:600;}
+.sb-btn.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:18px;background:var(--grad);border-radius:0 2px 2px 0;}
+.sb-btn svg{width:15px;height:15px;flex-shrink:0;opacity:.45;transition:.15s;}
 .sb-btn:hover svg,.sb-btn.active svg{opacity:1;}
-.d-main{flex:1;overflow-y:auto;padding:30px 36px;}
+.sb-new-badge{margin-left:auto;font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px;background:rgba(16,185,129,.2);color:#6ee7b7;border:1px solid rgba(16,185,129,.3);letter-spacing:.5px;text-transform:uppercase;}
+
+/* MAIN */
+.d-main{flex:1;overflow-y:auto;padding:28px 32px;}
 .d-main::-webkit-scrollbar{width:4px;}
-.d-main::-webkit-scrollbar-thumb{background:rgba(123,77,255,.25);border-radius:4px;}
-.d-sec{display:none;animation:fadeUp .3s ease;}
+.d-main::-webkit-scrollbar-thumb{background:rgba(124,58,237,.2);border-radius:4px;}
+.d-sec{display:none;animation:fadeUp .25s ease;}
 .d-sec.active{display:block;}
-
-/* ── OVERVIEW ── */
-.d-welcome h1{font-size:26px;font-weight:900;margin-bottom:4px;}
-.d-welcome p{color:var(--muted);font-size:13px;margin-bottom:24px;}
-.hi{color:var(--accent2);}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
-.stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;transition:.2s;}
-.stat:hover{border-color:rgba(123,77,255,.35);transform:translateY(-2px);}
-.stat-l{font-size:10px;color:var(--dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;font-weight:600;}
-.stat-v{font-size:24px;font-weight:900;margin-bottom:2px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:.2s;}
+.card:hover{border-color:var(--border2);}
+.c-title{font-size:11px;font-weight:700;margin-bottom:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 18px;transition:.2s;cursor:default;}
+.stat:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2);}
+.stat-l{font-size:10px;color:var(--dim);margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px;font-weight:700;}
+.stat-v{font-size:26px;font-weight:900;margin-bottom:3px;line-height:1;}
 .stat-s{font-size:11px;color:var(--dim);}
-.s-pu{color:var(--accent2);}.s-bl{color:#60a5fa;}.s-gr{color:#4ade80;}.s-or{color:#fb923c;}
+.s-pu{color:var(--accent2);}.s-bl{color:#60a5fa;}.s-gr{color:#34d399;}.s-or{color:#fb923c;}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;transition:.2s;}
-.card:hover{border-color:rgba(123,77,255,.28);}
-.c-title{font-size:14px;font-weight:700;margin-bottom:12px;color:#fff;}
-.ring-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;}
-.ring-svg{transform:rotate(-90deg);}
-.ring-bg{fill:none;stroke:rgba(255,255,255,.07);stroke-width:8;}
-.ring-fg{fill:none;stroke:url(#rg);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 1.2s ease;}
-.ring-pct{font-size:28px;font-weight:900;color:var(--accent2);text-align:center;}
-.ring-lbl{font-size:11px;color:var(--dim);text-align:center;}
-.xp-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--dim);margin-bottom:6px;}
-.xp-bar{height:6px;background:rgba(255,255,255,.06);border-radius:20px;overflow:hidden;}
-.xp-fill{height:100%;background:var(--grad);border-radius:20px;transition:width 1.2s ease;}
-.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
-.pill{background:rgba(123,77,255,.18);border:1px solid rgba(123,77,255,.3);color:#c4b6f9;padding:4px 11px;border-radius:50px;font-size:12px;font-weight:500;}
-.pill.weak{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.25);color:#fca5a5;}
-.trial-banner{background:linear-gradient(135deg,rgba(123,77,255,.2),rgba(37,99,235,.15));border:1px solid rgba(123,77,255,.35);border-radius:12px;padding:12px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
-.trial-text{font-size:13px;color:#c4b6f9;}
+.spinner{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,.15);border-top-color:#fff;border-radius:50%;animation:spin .65s linear infinite;vertical-align:middle;margin-right:5px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sec-title{font-size:20px;font-weight:800;margin-bottom:4px;letter-spacing:-.3px;}
+.sec-sub{color:var(--dim);font-size:13px;margin-bottom:20px;line-height:1.5;}
+.act-btn{padding:9px 22px;background:var(--grad);border:none;border-radius:9px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;}
+.act-btn:hover{opacity:.9;transform:translateY(-1px);}
+.act-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+select.styled-sel{padding:9px 14px;border-radius:9px;background:var(--bg3);border:1px solid var(--border);color:#fff;font-size:13px;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;}
+textarea.styled{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px;color:#fff;font-size:14px;resize:vertical;min-height:88px;outline:none;margin-bottom:12px;font-family:inherit;line-height:1.6;}
+textarea.styled:focus{border-color:var(--accent);}
+.d-welcome h1{font-size:26px;font-weight:900;margin-bottom:4px;letter-spacing:-.4px;}
+.d-welcome p{color:var(--muted);font-size:13px;margin-bottom:18px;}
+.hi{color:var(--accent2);}
+
+/* TRIAL SWITCHER BAR (in main content) */
+.trial-switcher-bar{background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(59,130,246,.05));border:1px solid rgba(124,58,237,.2);border-radius:14px;padding:16px 20px;margin-bottom:16px;}
+.trial-switcher-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;}
+.trial-switcher-title{font-size:12px;font-weight:700;color:var(--accent3);letter-spacing:.3px;}
+.trial-switcher-sub{font-size:11px;color:var(--dim);margin-top:2px;}
+.trial-tabs-row{display:flex;gap:6px;flex-wrap:wrap;}
+.trial-plan-tab{flex:1;min-width:120px;padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:.2s;text-align:left;}
+.trial-plan-tab:hover{border-color:var(--border2);color:#fff;}
+.trial-plan-tab.tpt-starter.active{background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.4);color:#93c5fd;}
+.trial-plan-tab.tpt-pro.active{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.4);color:#6ee7b7;}
+.trial-plan-tab.tpt-elite.active{background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.4);color:#fcd34d;}
+.tpt-name{font-size:13px;font-weight:700;margin-bottom:2px;}
+.tpt-price{font-size:10px;opacity:.65;}
+.tpt-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle;}
+
+/* PLAN TIER BANNER */
+.plan-tier-banner{border-radius:14px;padding:18px 22px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.plan-tier-banner.free{background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(59,130,246,.08));border:1px solid rgba(124,58,237,.25);}
+.plan-tier-banner.starter{background:linear-gradient(135deg,rgba(59,130,246,.14),rgba(59,130,246,.07));border:1px solid rgba(59,130,246,.3);}
+.plan-tier-banner.pro{background:linear-gradient(135deg,rgba(16,185,129,.12),rgba(59,130,246,.07));border:1px solid rgba(16,185,129,.28);}
+.plan-tier-banner.elite{background:linear-gradient(135deg,rgba(245,158,11,.14),rgba(239,68,68,.07));border:1px solid rgba(245,158,11,.35);}
+.plan-tier-info{display:flex;align-items:center;gap:12px;}
+.plan-tier-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.plan-tier-icon.free{background:rgba(124,58,237,.2);}
+.plan-tier-icon.starter{background:rgba(59,130,246,.2);}
+.plan-tier-icon.pro{background:rgba(16,185,129,.18);}
+.plan-tier-icon.elite{background:rgba(245,158,11,.2);}
+.plan-tier-name{font-size:15px;font-weight:800;}
+.plan-tier-desc{font-size:11px;color:var(--muted);margin-top:2px;}
+.plan-tier-actions{display:flex;gap:8px;}
+.upgrade-btn{padding:7px 16px;background:var(--grad);border:none;border-radius:8px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;}
+.trial-banner{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(59,130,246,.1));border:1px solid rgba(124,58,237,.3);border-radius:12px;padding:11px 18px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+.trial-text{font-size:13px;color:var(--accent3);}
 .trial-text strong{color:#fff;}
-.upgrade-btn{padding:7px 16px;background:var(--grad);border:none;border-radius:9px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.xp-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--dim);margin-bottom:5px;}
+.xp-bar{height:5px;background:rgba(255,255,255,.05);border-radius:20px;overflow:hidden;}
+.xp-fill{height:100%;background:var(--grad);border-radius:20px;transition:width 1.2s ease;}
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.pill{background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.25);color:var(--accent3);padding:3px 10px;border-radius:50px;font-size:11px;font-weight:500;}
+.pill.weak{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.2);color:#fca5a5;}
 
-/* ── PLAN ── */
-.plan-week{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:12px;}
-.pw-title{font-size:13px;font-weight:700;color:var(--accent2);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px;}
-.task-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+/* STUDY PLAN */
+.plan-week{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:10px;}
+.pw-title{font-size:11px;font-weight:700;color:var(--accent2);margin-bottom:10px;text-transform:uppercase;letter-spacing:.8px;}
+.task-row{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04);}
 .task-row:last-child{border-bottom:none;}
-.task-cb{width:17px;height:17px;border-radius:5px;border:2px solid rgba(123,77,255,.45);background:transparent;cursor:pointer;flex-shrink:0;margin-top:2px;transition:.2s;}
+.task-cb{width:16px;height:16px;border-radius:4px;border:2px solid rgba(124,58,237,.4);background:transparent;cursor:pointer;flex-shrink:0;margin-top:2px;transition:.2s;}
 .task-cb.done{background:var(--accent);border-color:var(--accent);}
-.task-txt{font-size:13px;line-height:1.55;color:var(--muted);flex:1;}
-.task-txt.done{text-decoration:line-through;opacity:.45;}
-.task-time{font-size:11px;color:var(--dim);background:rgba(255,255,255,.05);padding:2px 8px;border-radius:6px;flex-shrink:0;}
+.task-txt{font-size:13px;line-height:1.5;color:var(--muted);flex:1;}
+.task-txt.done{text-decoration:line-through;opacity:.4;}
+.task-time{font-size:10px;color:var(--dim);background:rgba(255,255,255,.04);padding:2px 7px;border-radius:5px;flex-shrink:0;}
 
-/* ── WEAK ── */
-.weak-card{background:var(--card);border:1px solid rgba(239,68,68,.18);border-radius:14px;padding:20px;margin-bottom:12px;}
-.weak-title{font-size:14px;font-weight:700;color:#f87171;margin-bottom:8px;}
+/* WEAK TOPICS */
+.weak-card{background:var(--card);border:1px solid rgba(239,68,68,.15);border-radius:12px;padding:18px;margin-bottom:10px;}
+.weak-title{font-size:14px;font-weight:700;color:#f87171;margin-bottom:6px;}
 .weak-body{font-size:13px;color:var(--muted);line-height:1.65;white-space:pre-wrap;}
-.fix-btn{margin-top:10px;padding:7px 14px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);color:#f87171;border-radius:9px;cursor:pointer;font-size:12px;font-weight:600;transition:.2s;}
-.fix-btn:hover{background:rgba(239,68,68,.22);}
+.fix-btn{margin-top:8px;padding:6px 12px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#f87171;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;transition:.2s;}
+.fix-btn:hover{background:rgba(239,68,68,.18);}
 
-/* ── AI CHAT ── */
-.ai-wrap{display:flex;flex-direction:column;height:calc(100vh - 190px);}
-.ai-msgs{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding:4px 0 16px;}
-.ai-msgs::-webkit-scrollbar{width:4px;}
-.ai-msgs::-webkit-scrollbar-thumb{background:rgba(123,77,255,.2);border-radius:4px;}
-.ai-m-ai{background:rgba(255,255,255,.07);padding:14px 18px;border-radius:14px;max-width:78%;font-size:14px;line-height:1.65;border:1px solid rgba(255,255,255,.07);}
-.ai-m-user{background:rgba(123,77,255,.28);border:1px solid rgba(123,77,255,.4);padding:12px 16px;border-radius:14px;max-width:78%;align-self:flex-end;font-size:14px;line-height:1.6;}
-.ai-row{display:flex;gap:10px;padding-top:14px;border-top:1px solid var(--border);}
-.ai-in{flex:1;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:#fff;font-size:14px;outline:none;transition:.2s;}
+/* AI CHAT */
+.ai-wrap{display:flex;flex-direction:column;height:calc(100vh - 180px);}
+.ai-msgs{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:4px 0 14px;}
+.ai-msgs::-webkit-scrollbar{width:3px;}
+.ai-msgs::-webkit-scrollbar-thumb{background:rgba(124,58,237,.15);border-radius:4px;}
+.ai-m-ai{background:rgba(255,255,255,.06);padding:13px 16px;border-radius:13px;max-width:80%;font-size:14px;line-height:1.65;border:1px solid var(--border);}
+.ai-m-user{background:rgba(124,58,237,.22);border:1px solid rgba(124,58,237,.35);padding:11px 15px;border-radius:13px;max-width:80%;align-self:flex-end;font-size:14px;line-height:1.6;}
+.ai-row{display:flex;gap:8px;padding-top:12px;border-top:1px solid var(--border);}
+.ai-in{flex:1;padding:11px 15px;border-radius:11px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:#fff;font-size:14px;outline:none;transition:.2s;}
 .ai-in:focus{border-color:var(--accent);}
-.ai-in::placeholder{color:#555;}
-.ai-send{padding:12px 20px;border-radius:12px;background:var(--grad);border:none;color:#fff;font-weight:700;font-size:14px;cursor:pointer;transition:.2s;}
-.ai-send:hover{transform:translateY(-1px);}
-.ai-send:disabled{opacity:.5;cursor:not-allowed;transform:none;}
-.quick-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
-.qbtn{padding:6px 12px;border-radius:8px;background:rgba(123,77,255,.14);border:1px solid rgba(123,77,255,.28);color:#c4b6f9;font-size:12px;cursor:pointer;transition:.2s;}
-.qbtn:hover{background:rgba(123,77,255,.26);}
+.ai-in::placeholder{color:var(--dim);}
+.ai-send{padding:11px 18px;border-radius:11px;background:var(--grad);border:none;color:#fff;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;}
+.ai-send:hover{opacity:.9;}
+.ai-send:disabled{opacity:.4;cursor:not-allowed;}
+.quick-btns{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.qbtn{padding:5px 11px;border-radius:7px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.22);color:var(--accent3);font-size:12px;cursor:pointer;transition:.2s;}
+.qbtn:hover{background:rgba(124,58,237,.2);}
 
-/* ── SUBSCRIPTION PAGE ── */
-.sub-page{background:radial-gradient(circle at 20% 20%,rgba(124,58,237,.45),transparent 55%),radial-gradient(circle at 80% 80%,rgba(37,99,235,.35),transparent 55%),var(--bg);flex-direction:column;align-items:center;justify-content:flex-start;padding:50px 24px 80px;overflow-y:auto;}
-.sub-head{text-align:center;margin-bottom:48px;}
-.sub-head h1{font-size:36px;font-weight:900;margin-bottom:10px;}
-.sub-head p{font-size:16px;color:var(--muted);max-width:480px;margin:0 auto;}
-.sub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;width:100%;max-width:900px;}
-.sub-card{background:rgba(20,20,25,.7);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:32px 28px;transition:.2s;position:relative;}
-.sub-card:hover{transform:translateY(-4px);border-color:rgba(123,77,255,.4);}
-.sub-card.popular{border-color:rgba(123,77,255,.5);box-shadow:0 0 30px rgba(123,77,255,.2);}
-.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:20px;white-space:nowrap;letter-spacing:.5px;}
-.sub-plan-name{font-size:14px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
-.sub-price{font-size:36px;font-weight:900;margin-bottom:4px;}
-.sub-price span{font-size:14px;font-weight:400;color:var(--muted);}
-.sub-desc{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.5;}
-.sub-features{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:10px;}
+/* SUBSCRIPTION */
+.sub-page{background:radial-gradient(ellipse at 20% 20%,rgba(124,58,237,.4),transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(59,130,246,.3),transparent 50%),var(--bg);flex-direction:column;align-items:center;justify-content:flex-start;padding:48px 24px 80px;overflow-y:auto;}
+.sub-head{text-align:center;margin-bottom:44px;}
+.sub-head h1{font-size:32px;font-weight:900;margin-bottom:8px;letter-spacing:-.5px;}
+.sub-head p{font-size:15px;color:var(--muted);max-width:440px;margin:0 auto;}
+.sub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;max-width:860px;}
+.sub-card{background:rgba(18,18,24,.8);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:18px;padding:28px 24px;transition:.25s;position:relative;}
+.sub-card:hover{transform:translateY(-3px);border-color:var(--border2);}
+.sub-card.popular{border-color:rgba(124,58,237,.45);box-shadow:0 0 40px rgba(124,58,237,.15);}
+.popular-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:20px;white-space:nowrap;letter-spacing:.5px;}
+.sub-plan-name{font-size:12px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;}
+.sub-price{font-size:34px;font-weight:900;margin-bottom:4px;letter-spacing:-.5px;}
+.sub-price span{font-size:13px;font-weight:400;color:var(--muted);}
+.sub-desc{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5;}
+.sub-features{list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:9px;}
 .sub-features li{font-size:13px;color:var(--muted);display:flex;align-items:flex-start;gap:8px;line-height:1.4;}
-.sub-features li::before{content:"✓";color:#4ade80;font-weight:700;flex-shrink:0;}
+.sub-features li::before{content:"✓";color:#34d399;font-weight:700;flex-shrink:0;}
 .sub-features li.no{color:var(--dim);}
 .sub-features li.no::before{content:"✕";color:var(--dim);}
-.sub-btn{width:100%;padding:13px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;border:none;}
-.sub-btn-solid{background:var(--grad);color:#fff;box-shadow:0 6px 18px var(--glow);}
-.sub-btn-solid:hover{transform:translateY(-2px);}
-.sub-btn-outline{background:transparent;border:1px solid rgba(255,255,255,.2);color:#fff;}
-.sub-btn-outline:hover{background:rgba(255,255,255,.08);}
-.sub-back{margin-top:28px;background:transparent;border:none;color:var(--muted);font-size:13px;cursor:pointer;}
+.sub-btn{width:100%;padding:12px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s;border:none;}
+.sub-btn-solid{background:var(--grad);color:#fff;}
+.sub-btn-solid:hover{opacity:.9;transform:translateY(-1px);}
+.sub-btn-outline{background:transparent;border:1px solid var(--border2);color:#fff;}
+.sub-btn-outline:hover{background:rgba(255,255,255,.06);}
+.sub-back{margin-top:24px;background:transparent;border:none;color:var(--muted);font-size:13px;cursor:pointer;}
 .sub-back:hover{color:#fff;}
 
-/* ── PROFILE TAB ── */
-.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
-.pf-field{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;}
-.pf-lbl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;font-weight:600;}
+/* PROFILE */
+.pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+.pf-field{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:13px;}
+.pf-lbl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:700;}
 .pf-val{font-size:14px;font-weight:600;}
 
-/* ── MISC ── */
-.spinner{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px;}
-@keyframes spin{to{transform:rotate(360deg)}}
-.sec-title{font-size:18px;font-weight:800;margin-bottom:6px;}
-.sec-sub{color:var(--dim);font-size:13px;margin-bottom:20px;}
-.act-btn{padding:10px 24px;background:var(--grad);border:none;border-radius:11px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;}
-.act-btn:hover{transform:translateY(-1px);}
-.act-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
-select.styled-sel{padding:10px 14px;border-radius:10px;background:var(--bg2);border:1px solid var(--border);color:#fff;font-size:13px;outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;}
-textarea.styled{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:11px;padding:13px;color:#fff;font-size:14px;resize:vertical;min-height:90px;outline:none;margin-bottom:13px;font-family:inherit;line-height:1.6;}
-textarea.styled:focus{border-color:var(--accent);}
+/* UPSELL */
+.upsell-overlay{background:linear-gradient(135deg,rgba(12,12,20,.98),rgba(18,12,36,.98));border:1px solid rgba(124,58,237,.25);border-radius:14px;padding:32px;text-align:center;margin-bottom:16px;}
+.upsell-icon{font-size:32px;margin-bottom:10px;}
+.upsell-title{font-size:17px;font-weight:800;margin-bottom:7px;}
+.upsell-desc{font-size:13px;color:var(--muted);line-height:1.65;max-width:360px;margin:0 auto 18px;}
+.upsell-btn{padding:11px 26px;background:var(--grad);border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;}
+.upsell-btn.pro-btn{background:linear-gradient(135deg,#047857,#1d4ed8);}
+.upsell-btn.elite-btn{background:linear-gradient(135deg,#b45309,#c2410c);}
+.upsell-btn:hover{opacity:.9;transform:translateY(-1px);}
 
-/* ── PLAN TIER DASHBOARD ── */
-.plan-tier-banner{border-radius:16px;padding:20px 24px;margin-bottom:22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
-.plan-tier-banner.free{background:linear-gradient(135deg,rgba(123,77,255,.15),rgba(59,130,246,.1));border:1px solid rgba(123,77,255,.3);}
-.plan-tier-banner.starter{background:linear-gradient(135deg,rgba(59,130,246,.18),rgba(59,130,246,.08));border:1px solid rgba(59,130,246,.4);}
-.plan-tier-banner.pro{background:linear-gradient(135deg,rgba(74,222,128,.15),rgba(59,130,246,.1));border:1px solid rgba(74,222,128,.3);}
-.plan-tier-banner.elite{background:linear-gradient(135deg,rgba(251,146,60,.18),rgba(239,68,68,.1));border:1px solid rgba(251,146,60,.4);}
-.plan-tier-info{display:flex;align-items:center;gap:14px;}
-.plan-tier-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-.plan-tier-icon.free{background:rgba(123,77,255,.25);}
-.plan-tier-icon.starter{background:rgba(59,130,246,.25);}
-.plan-tier-icon.pro{background:rgba(74,222,128,.2);}
-.plan-tier-icon.elite{background:rgba(251,146,60,.25);}
-.plan-tier-name{font-size:16px;font-weight:800;}
-.plan-tier-desc{font-size:12px;color:var(--muted);margin-top:2px;}
-.plan-tier-actions{display:flex;gap:8px;}
-
-/* Feature cards */
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
-.feat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;transition:.2s;position:relative;}
-.feat-card:hover{border-color:rgba(123,77,255,.3);transform:translateY(-2px);}
-.feat-card.locked{opacity:.45;pointer-events:none;}
-.feat-card.locked::after{content:'🔒';position:absolute;top:10px;right:12px;font-size:14px;}
-.feat-card.pro-feat{border-color:rgba(74,222,128,.2);}
-.feat-card.elite-feat{border-color:rgba(251,146,60,.2);}
-.feat-icon{font-size:24px;margin-bottom:10px;}
-.feat-title{font-size:13px;font-weight:700;margin-bottom:4px;}
-.feat-desc{font-size:11px;color:var(--dim);line-height:1.5;}
-.feat-action{margin-top:10px;padding:6px 12px;border-radius:8px;background:rgba(123,77,255,.18);border:1px solid rgba(123,77,255,.3);color:#c4b6f9;font-size:11px;cursor:pointer;font-weight:600;transition:.2s;border-width:1px;}
-.feat-action:hover{background:rgba(123,77,255,.3);}
-.feat-action.pro{background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.3);color:#86efac;}
-.feat-action.elite{background:rgba(251,146,60,.12);border-color:rgba(251,146,60,.3);color:#fdba74;}
-
-/* Flashcard system */
-.fc-wrap{perspective:800px;margin:20px 0;}
-.fc-inner{position:relative;width:100%;height:200px;transform-style:preserve-3d;transition:transform .6s ease;}
+/* FLASHCARDS */
+.fc-wrap{perspective:900px;margin:18px 0;}
+.fc-inner{position:relative;width:100%;height:200px;transform-style:preserve-3d;transition:transform .55s ease;}
 .fc-inner.flipped{transform:rotateY(180deg);}
-.fc-front,.fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:28px;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;}
-.fc-front{background:linear-gradient(135deg,rgba(123,77,255,.2),rgba(59,130,246,.15));border:1px solid rgba(123,77,255,.35);}
-.fc-back{background:linear-gradient(135deg,rgba(74,222,128,.15),rgba(59,130,246,.12));border:1px solid rgba(74,222,128,.3);transform:rotateY(180deg);}
+.fc-front,.fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:28px;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;}
+.fc-front{background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(59,130,246,.12));border:1px solid rgba(124,58,237,.3);}
+.fc-back{background:linear-gradient(135deg,rgba(16,185,129,.14),rgba(59,130,246,.1));border:1px solid rgba(16,185,129,.28);transform:rotateY(180deg);}
 .fc-q{font-size:16px;font-weight:700;line-height:1.5;}
 .fc-a{font-size:14px;line-height:1.65;color:#e2e8f0;}
 .fc-hint{font-size:11px;color:var(--dim);margin-top:8px;}
 .fc-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.fc-nav button{padding:8px 18px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:#fff;font-size:13px;cursor:pointer;transition:.2s;font-weight:600;}
-.fc-nav button:hover{background:rgba(255,255,255,.1);}
+.fc-nav button{padding:7px 16px;border-radius:9px;border:1px solid var(--border);background:var(--card);color:#fff;font-size:13px;cursor:pointer;transition:.2s;font-weight:600;}
+.fc-nav button:hover{background:var(--card2);}
 .fc-counter{font-size:13px;color:var(--dim);}
 
-/* Grade predictor */
-.grade-slider{width:100%;-webkit-appearance:none;height:6px;border-radius:20px;background:linear-gradient(to right,#f87171,#fb923c,#fbbf24,#4ade80);outline:none;cursor:pointer;}
-.grade-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);}
-.grade-result{text-align:center;padding:20px;background:rgba(255,255,255,.04);border-radius:12px;margin-top:14px;}
-.grade-letter{font-size:48px;font-weight:900;}
+/* GRADE PREDICTOR */
+.grade-slider{width:100%;-webkit-appearance:none;height:5px;border-radius:20px;background:linear-gradient(to right,#f87171,#fb923c,#fbbf24,#34d399);outline:none;cursor:pointer;}
+.grade-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.4);}
+.grade-result{text-align:center;padding:20px;background:rgba(255,255,255,.03);border-radius:12px;margin-top:12px;}
+.grade-letter{font-size:52px;font-weight:900;}
 .grade-sub{font-size:13px;color:var(--dim);margin-top:4px;}
 
-/* Exam sim */
-.exam-q{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px;margin-bottom:12px;}
-.exam-q-num{font-size:11px;color:var(--accent2);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
-.exam-q-txt{font-size:14px;line-height:1.6;margin-bottom:12px;}
+/* EXAM SIM */
+.exam-q{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:11px;padding:16px;margin-bottom:10px;}
+.exam-q-num{font-size:10px;color:var(--accent2);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+.exam-q-txt{font-size:14px;line-height:1.6;margin-bottom:10px;}
 .exam-marks{font-size:11px;color:var(--dim);font-style:italic;}
-.exam-ans{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px;color:#fff;font-size:13px;resize:vertical;min-height:80px;outline:none;font-family:inherit;line-height:1.6;margin-top:10px;}
+.exam-ans{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:9px;padding:11px;color:#fff;font-size:13px;resize:vertical;min-height:76px;outline:none;font-family:inherit;line-height:1.6;margin-top:8px;}
 .exam-ans:focus{border-color:var(--accent);}
-.score-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:50px;font-size:12px;font-weight:700;}
-.score-good{background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.3);color:#4ade80;}
-.score-mid{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);color:#fbbf24;}
-.score-low{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);color:#f87171;}
+.score-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:50px;font-size:12px;font-weight:700;}
+.score-good{background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);color:#34d399;}
+.score-mid{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fbbf24;}
+.score-low{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#f87171;}
+.exam-mode-btn{padding:9px 20px;border-radius:9px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;transition:.2s;}
+.exam-mode-btn:hover{color:#fff;border-color:var(--border2);}
+.exam-mode-btn.active{background:rgba(124,58,237,.18);border-color:rgba(124,58,237,.4);color:#fff;}
 
-/* Upsell locked panel */
-.upsell-overlay{background:linear-gradient(135deg,rgba(15,15,25,.97),rgba(20,15,40,.97));border:1px solid rgba(123,77,255,.3);border-radius:16px;padding:36px;text-align:center;margin-bottom:16px;}
-.upsell-icon{font-size:36px;margin-bottom:12px;}
-.upsell-title{font-size:18px;font-weight:800;margin-bottom:8px;}
-.upsell-desc{font-size:13px;color:var(--muted);line-height:1.65;max-width:380px;margin:0 auto 20px;}
-.upsell-btn{padding:12px 28px;background:var(--grad);border:none;border-radius:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px var(--glow);transition:.2s;}
-.upsell-btn.pro-btn{background:linear-gradient(135deg,#059669,#3b82f6);}
-.upsell-btn.elite-btn{background:linear-gradient(135deg,#d97706,#ef4444);}
-.upsell-btn:hover{transform:translateY(-2px);}
-
-/* Nav plan chip */
-.plan-chip{padding:3px 10px;border-radius:50px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;}
-.plan-chip.free{background:rgba(123,77,255,.25);color:#c4b6f9;}
-.plan-chip.starter{background:rgba(59,130,246,.25);color:#93c5fd;}
-.plan-chip.pro{background:rgba(74,222,128,.2);color:#4ade80;}
-.plan-chip.elite{background:rgba(251,146,60,.25);color:#fb923c;}
-
-/* Exam mode buttons */
-.exam-mode-btn{padding:10px 22px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;transition:.2s;}
-.exam-mode-btn:hover{background:rgba(255,255,255,.1);color:#fff;}
-.exam-mode-btn.active{background:rgba(123,77,255,.25);border-color:rgba(123,77,255,.5);color:#fff;}
-
-/* One-by-one exam */
-.obo-question{background:linear-gradient(135deg,rgba(123,77,255,.12),rgba(59,130,246,.08));border:1px solid rgba(123,77,255,.3);border-radius:16px;padding:28px;margin-bottom:16px;}
-.obo-num{font-size:11px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
-.obo-q{font-size:16px;font-weight:700;line-height:1.6;margin-bottom:8px;}
-.obo-marks{font-size:12px;color:var(--dim);margin-bottom:16px;}
-.obo-ans{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px;color:#fff;font-size:14px;resize:vertical;min-height:100px;outline:none;font-family:inherit;line-height:1.6;}
+/* OBO EXAM */
+.obo-question{background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(59,130,246,.06));border:1px solid rgba(124,58,237,.25);border-radius:14px;padding:24px;margin-bottom:14px;}
+.obo-num{font-size:10px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;}
+.obo-q{font-size:16px;font-weight:700;line-height:1.6;margin-bottom:7px;}
+.obo-marks{font-size:12px;color:var(--dim);margin-bottom:14px;}
+.obo-ans{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:11px;padding:13px;color:#fff;font-size:14px;resize:vertical;min-height:95px;outline:none;font-family:inherit;line-height:1.6;}
 .obo-ans:focus{border-color:var(--accent);}
-.obo-feedback{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:12px;padding:18px;margin-top:12px;font-size:13px;line-height:1.7;color:#e2faea;}
-.obo-score-bar{display:flex;align-items:center;gap:14px;margin-bottom:12px;flex-wrap:wrap;}
-.obo-score-circle{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0;}
-.obo-session-progress{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
-.obo-prog-num{font-size:28px;font-weight:900;color:var(--accent2);}
-.obo-prog-lbl{font-size:11px;color:var(--dim);}
-.obo-total-card{background:linear-gradient(135deg,rgba(123,77,255,.15),rgba(59,130,246,.1));border:1px solid rgba(123,77,255,.3);border-radius:16px;padding:28px;text-align:center;}
-.obo-final-grade{font-size:56px;font-weight:900;margin-bottom:8px;}
+.obo-feedback{background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.18);border-radius:11px;padding:16px;margin-top:10px;font-size:13px;line-height:1.7;color:#d1fae5;}
+.obo-score-bar{display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
+.obo-score-circle{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;}
+.obo-session-progress{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.obo-prog-num{font-size:26px;font-weight:900;color:var(--accent2);}
+.obo-prog-lbl{font-size:10px;color:var(--dim);}
+.obo-total-card{background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(59,130,246,.08));border:1px solid rgba(124,58,237,.25);border-radius:14px;padding:26px;text-align:center;}
+.obo-final-grade{font-size:52px;font-weight:900;margin-bottom:6px;}
 
-/* Starter dashboard specifics */
-.starter-hero{background:linear-gradient(135deg,rgba(59,130,246,.18),rgba(123,77,255,.12));border:1px solid rgba(59,130,246,.3);border-radius:18px;padding:24px 28px;margin-bottom:16px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
-.starter-hero-text h2{font-size:18px;font-weight:800;margin-bottom:4px;}
-.starter-hero-text p{font-size:13px;color:var(--muted);line-height:1.55;}
-
-/* Pro dashboard specifics */
-.pro-insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
-.pro-insight{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;transition:.2s;cursor:pointer;}
-.pro-insight:hover{border-color:rgba(74,222,128,.3);transform:translateY(-2px);}
-.pro-insight-icon{font-size:22px;margin-bottom:8px;}
-.pro-insight-num{font-size:24px;font-weight:900;color:#4ade80;margin-bottom:2px;}
-.pro-insight-lbl{font-size:11px;color:var(--dim);}
-.pro-spec-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:50px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.25);color:#4ade80;font-size:12px;font-weight:600;margin-bottom:14px;}
-
-/* Elite dashboard specifics */
-.elite-header{background:linear-gradient(135deg,rgba(251,146,60,.15),rgba(239,68,68,.1));border:1px solid rgba(251,146,60,.3);border-radius:18px;padding:24px;margin-bottom:16px;position:relative;overflow:hidden;}
-.elite-header::before{content:'👑';position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:48px;opacity:.15;}
-.elite-header h2{font-size:20px;font-weight:900;color:#fdba74;margin-bottom:4px;}
-.elite-header p{font-size:13px;color:rgba(253,186,116,.7);}
-.elite-quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px;}
-.elite-quick-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:14px;}
-.elite-quick-card:hover{border-color:rgba(251,146,60,.4);transform:translateY(-2px);background:rgba(251,146,60,.06);}
-.elite-quick-icon{width:42px;height:42px;border-radius:12px;background:rgba(251,146,60,.15);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-.elite-quick-title{font-size:14px;font-weight:700;margin-bottom:2px;}
-.elite-quick-desc{font-size:11px;color:var(--dim);}
-.daily-challenge{background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(251,146,60,.08));border:1px solid rgba(239,68,68,.25);border-radius:16px;padding:20px;margin-bottom:16px;}
-.daily-challenge-label{font-size:10px;color:#f87171;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;}
-.daily-challenge h3{font-size:15px;font-weight:700;margin-bottom:8px;}
-.daily-challenge p{font-size:13px;color:var(--muted);line-height:1.55;}
-
-/* Trial dashboard switcher */
-.trial-dash-btn{display:flex;align-items:center;gap:10px;padding:10px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);color:#fff;cursor:pointer;transition:.2s;}
-.trial-dash-btn:hover{background:rgba(255,255,255,.1);}
-.trial-dash-btn.active{background:rgba(123,77,255,.3);border-color:rgba(123,77,255,.6);}
-
-/* Google OAuth button */
-
-
-
-
-
-
-
-/* Massively improved dashboard widgets */
-.streak-fire-row{display:flex;align-items:center;gap:6px;}
-.streak-num{font-size:32px;font-weight:900;color:#fb923c;line-height:1;}
-
-/* Improved Elite dashboard */
-.elite-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
-.elite-stat{background:linear-gradient(135deg,rgba(251,146,60,.08),rgba(239,68,68,.05));border:1px solid rgba(251,146,60,.18);border-radius:14px;padding:14px;text-align:center;cursor:pointer;transition:.2s;}
-.elite-stat:hover{border-color:rgba(251,146,60,.4);transform:translateY(-2px);}
-.elite-stat-icon{font-size:20px;margin-bottom:6px;}
-.elite-stat-val{font-size:22px;font-weight:900;color:#fdba74;margin-bottom:2px;}
-.elite-stat-lbl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;}
-
-/* Paper tutor tab */
-.paper-tutor-wrap{display:flex;flex-direction:column;gap:14px;}
-.paper-q-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;}
-.paper-q-num{font-size:10px;color:var(--accent2);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
-.paper-q-text{font-size:15px;line-height:1.7;margin-bottom:12px;color:#e8e8f0;}
-.paper-marks{display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(123,77,255,.15);border:1px solid rgba(123,77,255,.25);color:#c4b6f9;margin-bottom:12px;}
-.paper-ans{width:100%;min-height:80px;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#fff;font-size:14px;line-height:1.6;resize:vertical;outline:none;transition:.2s;font-family:inherit;}
+/* PAPER TUTOR */
+.paper-tutor-wrap{display:flex;flex-direction:column;gap:12px;}
+.paper-q-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;}
+.paper-q-num{font-size:10px;color:var(--accent2);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;}
+.paper-q-text{font-size:15px;line-height:1.7;margin-bottom:10px;color:#e8e8f0;}
+.paper-marks{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 9px;border-radius:20px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.22);color:var(--accent3);margin-bottom:10px;}
+.paper-ans{width:100%;min-height:76px;padding:11px 13px;border-radius:9px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:#fff;font-size:14px;line-height:1.6;resize:vertical;outline:none;transition:.2s;font-family:inherit;}
 .paper-ans:focus{border-color:var(--accent);}
-.paper-feedback{margin-top:10px;padding:14px;border-radius:12px;font-size:13px;line-height:1.7;}
-.paper-feedback.good{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);color:#86efac;}
-.paper-feedback.ok{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);color:#fde68a;}
-.paper-feedback.poor{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#fca5a5;}
-.paper-score-badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin-bottom:8px;}
+.paper-feedback{margin-top:8px;padding:12px;border-radius:10px;font-size:13px;line-height:1.7;}
+.paper-feedback.good{background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.18);color:#a7f3d0;}
+.paper-feedback.ok{background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.18);color:#fde68a;}
+.paper-feedback.poor{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.18);color:#fca5a5;}
+.paper-score-badge{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;margin-bottom:6px;}
 
-/* Pro — improved insights */
-.pro-activity-chart{display:flex;align-items:flex-end;gap:6px;height:60px;margin-bottom:6px;}
-.pro-bar{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,rgba(74,222,128,.7),rgba(59,130,246,.4));min-height:4px;transition:height .4s ease;}
-.pro-activity-days{display:flex;gap:6px;margin-bottom:14px;}
-.pro-day-lbl{flex:1;text-align:center;font-size:9px;color:var(--dim);}
-
-/* Starter — improved stats row */
-.starter-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
-.starter-stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center;transition:.2s;}
-.starter-stat:hover{border-color:rgba(59,130,246,.3);}
-.starter-stat-val{font-size:24px;font-weight:900;color:#93c5fd;margin-bottom:4px;}
-.starter-stat-lbl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;}
-
-/* Motivational quote card */
-.quote-card{background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(59,130,246,.07));border:1px solid rgba(139,92,246,.2);border-radius:16px;padding:18px 20px;margin-bottom:16px;position:relative;}
-.quote-mark{position:absolute;top:12px;left:16px;font-size:28px;color:rgba(139,92,246,.3);line-height:1;font-family:Georgia,serif;}
-.quote-text{font-size:14px;line-height:1.65;color:var(--muted);padding-left:24px;font-style:italic;}
-.quote-author{font-size:11px;color:var(--dim);padding-left:24px;margin-top:6px;}
-
-/* Focus timer widget */
-.focus-timer{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(5,150,105,.07));border:1px solid rgba(16,185,129,.2);border-radius:16px;padding:18px 20px;margin-bottom:16px;}
-.focus-timer-display{font-size:42px;font-weight:900;color:#34d399;letter-spacing:-1px;text-align:center;margin:10px 0;}
-.focus-timer-btns{display:flex;gap:8px;justify-content:center;}
-.focus-timer-btn{padding:8px 20px;border-radius:10px;border:1px solid rgba(52,211,153,.3);background:rgba(52,211,153,.1);color:#34d399;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;}
-.focus-timer-btn:hover{background:rgba(52,211,153,.2);}
-
-/* Today's targets */
-.targets-list{display:flex;flex-direction:column;gap:8px;}
-.target-item{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:.2s;}
-.target-item:hover{background:rgba(255,255,255,.06);}
-.target-item.done{opacity:.5;text-decoration:line-through;}
-.target-check{width:18px;height:18px;border-radius:5px;border:2px solid rgba(255,255,255,.2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;}
+/* DASHBOARD WIDGETS */
+.mastery-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.mastery-label{font-size:12px;color:var(--muted);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.mastery-track{flex:2;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;}
+.mastery-fill{height:100%;border-radius:3px;transition:width .8s ease;}
+.mastery-pct{font-size:10px;color:var(--dim);min-width:26px;text-align:right;}
+.streak-bar-wrap{display:flex;gap:3px;margin-top:6px;}
+.streak-seg{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.07);}
+.streak-seg.lit{background:linear-gradient(90deg,#fb923c,#f59e0b);}
+.usage-ring-wrap{position:relative;width:72px;height:72px;flex-shrink:0;}
+.usage-ring-wrap svg{transform:rotate(-90deg);}
+.usage-ring-bg{fill:none;stroke:rgba(255,255,255,.06);stroke-width:6;}
+.usage-ring-fg{fill:none;stroke:#60a5fa;stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
+.usage-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.usage-ring-num{font-size:12px;font-weight:800;color:#60a5fa;line-height:1;}
+.usage-ring-sub{font-size:8px;color:var(--dim);margin-top:1px;}
+.xp-level-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:50px;background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(167,139,250,.12));border:1px solid rgba(124,58,237,.3);font-size:11px;font-weight:700;color:var(--accent3);}
+.topic-map{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
+.topic-node{padding:4px 10px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;}
+.topic-node:hover{transform:translateY(-1px);}
+.tn-weak{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.22);color:#fca5a5;}
+.tn-ok{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2);color:#fde68a;}
+.tn-strong{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2);color:#86efac;}
+.tn-unknown{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--muted);}
+.quote-card{background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(59,130,246,.05));border:1px solid rgba(124,58,237,.18);border-radius:14px;padding:16px 20px;margin-bottom:14px;position:relative;}
+.quote-mark{position:absolute;top:10px;left:14px;font-size:26px;color:rgba(124,58,237,.25);line-height:1;font-family:Georgia,serif;}
+.quote-text{font-size:14px;line-height:1.65;color:var(--muted);padding-left:22px;font-style:italic;}
+.quote-author{font-size:11px;color:var(--dim);padding-left:22px;margin-top:5px;}
+.focus-timer{background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(5,150,105,.05));border:1px solid rgba(16,185,129,.18);border-radius:14px;padding:16px 20px;margin-bottom:14px;}
+.focus-timer-display{font-size:40px;font-weight:900;color:#34d399;letter-spacing:-1px;text-align:center;margin:8px 0;}
+.focus-timer-btns{display:flex;gap:7px;justify-content:center;}
+.focus-timer-btn{padding:7px 18px;border-radius:9px;border:1px solid rgba(52,211,153,.25);background:rgba(52,211,153,.08);color:#34d399;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;}
+.focus-timer-btn:hover{background:rgba(52,211,153,.15);}
+.targets-list{display:flex;flex-direction:column;gap:7px;}
+.target-item{display:flex;align-items:center;gap:9px;padding:9px 13px;border-radius:9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);cursor:pointer;transition:.2s;}
+.target-item:hover{background:rgba(255,255,255,.055);}
+.target-item.done{opacity:.45;}
+.target-check{width:17px;height:17px;border-radius:4px;border:2px solid rgba(255,255,255,.18);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;}
 .target-item.done .target-check{background:var(--accent);border-color:var(--accent);}
 .target-text{font-size:13px;line-height:1.4;}
-
-/* Leaderboard/streak panel */
-.streak-milestones{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
-.milestone{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;}
-.milestone.achieved{background:rgba(251,146,60,.2);border:1px solid rgba(251,146,60,.4);color:#fb923c;}
-.milestone.locked{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--dim);}
-
-/* Paper exam score ring */
-.score-ring-wrap{position:relative;display:inline-flex;align-items:center;justify-content:center;}
-.score-pct-big{position:absolute;font-size:18px;font-weight:900;color:#fff;}
-
-/* Sidebar ai messages counter badge */
-.sb-ai-badge{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:10px;background:rgba(123,77,255,.3);font-size:10px;font-weight:700;color:#c4b6f9;padding:0 5px;margin-left:auto;}
-
-/* ── ENHANCED DASHBOARD STYLES ── */
-/* Streak milestone badges */
-.streak-bar-wrap{display:flex;gap:4px;margin-top:6px;}
-.streak-seg{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.08);transition:.3s;}
-.streak-seg.lit{background:linear-gradient(90deg,#fb923c,#f59e0b);}
-
-/* AI usage ring for Pro */
-.usage-ring-wrap{position:relative;width:80px;height:80px;flex-shrink:0;}
-.usage-ring-wrap svg{transform:rotate(-90deg);}
-.usage-ring-bg{fill:none;stroke:rgba(255,255,255,.07);stroke-width:7;}
-.usage-ring-fg{fill:none;stroke:#60a5fa;stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
-.usage-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.usage-ring-num{font-size:13px;font-weight:800;color:#60a5fa;line-height:1;}
-.usage-ring-sub{font-size:9px;color:var(--dim);margin-top:2px;}
-
-/* XP level badge */
-.xp-level-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:50px;background:linear-gradient(135deg,rgba(123,77,255,.25),rgba(184,107,255,.15));border:1px solid rgba(123,77,255,.35);font-size:12px;font-weight:700;color:#c4b6f9;}
-
-/* Hot streak animation */
-@keyframes pulse-fire{0%,100%{opacity:1}50%{opacity:.7;transform:scale(1.08);}}
-.fire-pulse{animation:pulse-fire 1.4s ease-in-out infinite;}
-
-/* Insight number counter */
-.big-insight{font-size:36px;font-weight:900;line-height:1;margin-bottom:2px;}
-
-/* Mastery bar */
-.mastery-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.mastery-label{font-size:12px;color:var(--muted);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.mastery-track{flex:2;height:6px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;}
-.mastery-fill{height:100%;border-radius:3px;transition:width .8s ease;}
-.mastery-pct{font-size:11px;color:var(--dim);min-width:28px;text-align:right;}
-
-/* Subject map card */
-.topic-map{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
-.topic-node{padding:5px 11px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s;}
-.topic-node:hover{transform:translateY(-1px);}
-.tn-weak{background:rgba(239,68,68,.14);border:1px solid rgba(239,68,68,.28);color:#fca5a5;}
-.tn-ok{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);color:#fde68a;}
-.tn-strong{background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.25);color:#86efac;}
-.tn-unknown{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--muted);}
-
-/* Pro ai message counter */
-.msg-remaining-bar{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-top:6px;}
-.msg-remaining-fill{height:100%;border-radius:3px;transition:width .8s ease;}
-
-/* Elite AI coach card */
-.ai-coach-card{background:linear-gradient(135deg,rgba(123,77,255,.18),rgba(59,130,246,.12));border:1px solid rgba(123,77,255,.3);border-radius:16px;padding:18px 20px;margin-bottom:14px;display:flex;align-items:flex-start;gap:14px;}
-.ai-coach-avatar{width:44px;height:44px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-.ai-coach-body{flex:1;}
-.ai-coach-name{font-size:13px;font-weight:700;color:#c4b6f9;margin-bottom:4px;}
-.ai-coach-msg{font-size:13px;color:rgba(255,255,255,.8);line-height:1.65;}
-.ai-coach-msg em{color:#a5b4fc;font-style:normal;font-weight:600;}
-
-/* Starter reward card */
-.reward-card{background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(123,77,255,.1));border:1px solid rgba(59,130,246,.25);border-radius:14px;padding:16px 18px;margin-bottom:14px;}
-.reward-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.reward-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:50px;font-size:11px;font-weight:700;background:rgba(74,222,128,.15);border:1px solid rgba(74,222,128,.3);color:#4ade80;}
-.next-reward{font-size:12px;color:var(--dim);margin-top:6px;}
-
-/* Leaderboard */
-.lb-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.target-item.done .target-text{text-decoration:line-through;}
+.streak-milestones{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px;}
+.milestone{padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;}
+.milestone.achieved{background:rgba(251,146,60,.18);border:1px solid rgba(251,146,60,.35);color:#fb923c;}
+.milestone.locked{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:var(--dim);}
+.exam-countdown-card{background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(251,146,60,.06));border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:14px 18px;margin-bottom:12px;}
+.countdown-row{display:flex;gap:10px;margin-top:8px;}
+.cd-block{background:rgba(0,0,0,.2);border-radius:9px;padding:7px 12px;text-align:center;flex:1;}
+.cd-num{font-size:20px;font-weight:900;color:#f87171;line-height:1;}
+.cd-lbl{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+.notes-area{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:9px;color:#fff;font-size:13px;padding:10px 12px;resize:none;outline:none;font-family:inherit;line-height:1.6;min-height:75px;}
+.notes-area:focus{border-color:var(--accent);}
+.notes-saved{font-size:11px;color:#34d399;opacity:0;transition:.3s;}
+.notes-saved.show{opacity:1;}
+.lb-row{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04);}
 .lb-row:last-child{border-bottom:none;}
-.lb-rank{font-size:14px;font-weight:800;min-width:22px;color:var(--dim);}
+.lb-rank{font-size:13px;font-weight:800;min-width:20px;color:var(--dim);}
 .lb-rank.gold{color:#f59e0b;}.lb-rank.silver{color:#94a3b8;}.lb-rank.bronze{color:#b45309;}
 .lb-name{font-size:13px;flex:1;}
 .lb-xp{font-size:12px;font-weight:700;color:var(--accent2);}
-.lb-you{background:rgba(123,77,255,.12);border-radius:8px;padding:4px 8px;}
-
-/* Exam countdown */
-.exam-countdown-card{background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(251,146,60,.08));border:1px solid rgba(239,68,68,.22);border-radius:14px;padding:16px 20px;margin-bottom:14px;}
-.countdown-row{display:flex;gap:12px;margin-top:10px;}
-.cd-block{background:rgba(0,0,0,.25);border-radius:10px;padding:8px 14px;text-align:center;flex:1;}
-.cd-num{font-size:22px;font-weight:900;color:#f87171;line-height:1;}
-.cd-lbl{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
-
-/* Notes widget */
-.notes-area{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#fff;font-size:13px;padding:10px 12px;resize:none;outline:none;font-family:inherit;line-height:1.6;min-height:80px;}
-.notes-area:focus{border-color:var(--accent);}
-.notes-saved{font-size:11px;color:#4ade80;opacity:0;transition:.3s;}
-.notes-saved.show{opacity:1;}
+.lb-you{background:rgba(124,58,237,.1);border-radius:7px;padding:3px 7px;}
+.ai-coach-card{background:linear-gradient(135deg,rgba(124,58,237,.14),rgba(59,130,246,.09));border:1px solid rgba(124,58,237,.25);border-radius:14px;padding:16px 18px;margin-bottom:12px;display:flex;align-items:flex-start;gap:12px;}
+.ai-coach-avatar{width:40px;height:40px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.ai-coach-body{flex:1;}
+.ai-coach-name{font-size:12px;font-weight:700;color:var(--accent3);margin-bottom:3px;}
+.ai-coach-msg{font-size:13px;color:rgba(255,255,255,.75);line-height:1.65;}
+.ai-coach-msg em{color:#a5b4fc;font-style:normal;font-weight:600;}
+.pro-activity-chart{display:flex;align-items:flex-end;gap:5px;height:56px;margin-bottom:5px;}
+.pro-bar{flex:1;border-radius:3px 3px 0 0;background:linear-gradient(180deg,rgba(16,185,129,.65),rgba(59,130,246,.35));min-height:3px;transition:height .4s ease;}
+.pro-activity-days{display:flex;gap:5px;margin-bottom:12px;}
+.pro-day-lbl{flex:1;text-align:center;font-size:9px;color:var(--dim);}
+.reward-card{background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(124,58,237,.08));border:1px solid rgba(59,130,246,.22);border-radius:12px;padding:14px 16px;margin-bottom:12px;}
+.reward-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.reward-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:50px;font-size:11px;font-weight:700;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);color:#34d399;}
+.next-reward{font-size:11px;color:var(--dim);margin-top:5px;}
+.msg-remaining-bar{height:4px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;margin-top:5px;}
+.msg-remaining-fill{height:100%;border-radius:3px;transition:width .8s ease;}
+.score-ring-wrap{position:relative;display:inline-flex;align-items:center;justify-content:center;}
+.score-pct-big{position:absolute;font-size:17px;font-weight:900;color:#fff;}
+.sb-ai-badge{display:inline-flex;align-items:center;justify-content:center;min-width:19px;height:19px;border-radius:10px;background:rgba(124,58,237,.25);font-size:10px;font-weight:700;color:var(--accent3);padding:0 4px;margin-left:auto;}
+.starter-hero{background:linear-gradient(135deg,rgba(59,130,246,.14),rgba(124,58,237,.09));border:1px solid rgba(59,130,246,.25);border-radius:16px;padding:22px 26px;margin-bottom:14px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.starter-hero-text h2{font-size:17px;font-weight:800;margin-bottom:3px;}
+.starter-hero-text p{font-size:13px;color:var(--muted);line-height:1.5;}
+.starter-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.starter-stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:13px;text-align:center;transition:.2s;}
+.starter-stat:hover{border-color:rgba(59,130,246,.28);}
+.starter-stat-val{font-size:22px;font-weight:900;color:#93c5fd;margin-bottom:3px;}
+.starter-stat-lbl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;}
+.pro-insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.pro-insight{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;transition:.2s;cursor:pointer;}
+.pro-insight:hover{border-color:rgba(16,185,129,.25);transform:translateY(-2px);}
+.pro-insight-icon{font-size:20px;margin-bottom:7px;}
+.pro-insight-num{font-size:22px;font-weight:900;color:#34d399;margin-bottom:2px;}
+.pro-insight-lbl{font-size:10px;color:var(--dim);}
+.pro-spec-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:50px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.22);color:#6ee7b7;font-size:11px;font-weight:600;margin-bottom:12px;}
+.elite-header{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(239,68,68,.07));border:1px solid rgba(245,158,11,.28);border-radius:16px;padding:22px;margin-bottom:14px;position:relative;overflow:hidden;}
+.elite-header h2{font-size:19px;font-weight:900;color:#fcd34d;margin-bottom:3px;}
+.elite-header p{font-size:13px;color:rgba(252,211,77,.65);}
+.elite-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:14px;}
+.elite-stat{background:linear-gradient(135deg,rgba(245,158,11,.07),rgba(239,68,68,.04));border:1px solid rgba(245,158,11,.16);border-radius:12px;padding:12px;text-align:center;cursor:pointer;transition:.2s;}
+.elite-stat:hover{border-color:rgba(245,158,11,.35);transform:translateY(-2px);}
+.elite-stat-val{font-size:20px;font-weight:900;color:#fcd34d;margin-bottom:2px;}
+.elite-stat-lbl{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;}
+.elite-quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;}
+.elite-quick-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:12px;}
+.elite-quick-card:hover{border-color:rgba(245,158,11,.35);transform:translateY(-2px);background:rgba(245,158,11,.04);}
+.elite-quick-icon{width:38px;height:38px;border-radius:10px;background:rgba(245,158,11,.12);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.elite-quick-title{font-size:13px;font-weight:700;margin-bottom:2px;}
+.elite-quick-desc{font-size:11px;color:var(--dim);}
+.daily-challenge{background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(251,146,60,.06));border:1px solid rgba(239,68,68,.22);border-radius:14px;padding:18px;margin-bottom:14px;}
+.daily-challenge-label{font-size:10px;color:#f87171;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;}
+.daily-challenge h3{font-size:14px;font-weight:700;margin-bottom:7px;}
+.daily-challenge p{font-size:13px;color:var(--muted);line-height:1.5;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:.2s;position:relative;}
+.feat-card:hover{border-color:rgba(124,58,237,.25);transform:translateY(-2px);}
+.feat-card.locked{opacity:.4;pointer-events:none;}
+.feat-card.locked::after{content:'locked';position:absolute;top:8px;right:10px;font-size:9px;color:var(--dim);font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.feat-icon{font-size:22px;margin-bottom:8px;}
+.feat-title{font-size:12px;font-weight:700;margin-bottom:3px;}
+.feat-desc{font-size:11px;color:var(--dim);line-height:1.5;}
+.feat-action{margin-top:9px;padding:5px 11px;border-radius:7px;background:rgba(124,58,237,.14);border:1px solid rgba(124,58,237,.25);color:var(--accent3);font-size:11px;cursor:pointer;font-weight:600;transition:.2s;}
+.feat-action:hover{background:rgba(124,58,237,.25);}
+@keyframes pulse-fire{0%,100%{opacity:1}50%{opacity:.7;transform:scale(1.06);}}
+.fire-pulse{animation:pulse-fire 1.4s ease-in-out infinite;}
+.big-insight{font-size:34px;font-weight:900;line-height:1;margin-bottom:2px;}
 </style>
 </head>
 <body>
@@ -745,7 +713,7 @@ textarea.styled:focus{border-color:var(--accent);}
       </button>
       <button class="sb-btn" id="sb-paper" onclick="goTab('paper',this)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-        Paper Tutor 🆕
+        Paper Tutor 
       </button>
       <div class="sb-lbl">Account</div>
       <button class="sb-btn" onclick="openSub()">
@@ -763,43 +731,35 @@ textarea.styled:focus{border-color:var(--accent);}
       <!-- OVERVIEW -->
       <div id="tab-overview" class="d-sec active">
         <div class="d-welcome">
-          <h1>Good to see you, <span class="hi" id="w-name">there</span> 👋</h1>
+          <h1>Good to see you, <span class="hi" id="w-name">there</span></h1>
           <p id="overview-sub-line">Here's your study overview. Keep the momentum going.</p>
         </div>
 
-        <!-- Trial dashboard switcher — shown right at the top during trial -->
-        <div id="trial-dash-switcher" style="margin-bottom:20px;">
-          <div style="background:linear-gradient(135deg,rgba(123,77,255,.2),rgba(59,130,246,.15));border:1px solid rgba(123,77,255,.45);border-radius:18px;padding:20px 24px;box-shadow:0 4px 24px rgba(123,77,255,.15);">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
-              <div>
-                <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:2px;">🎓 Free Trial — You have <span id="trial-days-left-switcher" style="color:#b86bff;">4 days</span> to explore every plan</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.55);">Switch between dashboards below — use everything, then pick the plan that suits you.</div>
-              </div>
-              <button class="act-btn" style="font-size:12px;padding:8px 18px;flex-shrink:0;" onclick="openSub()">Choose a Plan →</button>
+        <!-- Current plan indicator — always shown at very top so user knows which dashboard they're on -->
+        <div id="current-dash-indicator" style="margin-bottom:16px;"></div>
+
+        <!-- Trial dashboard switcher -->
+        <div id="trial-dash-switcher" class="trial-switcher-bar" style="display:none;">
+          <div class="trial-switcher-header">
+            <div>
+              <div class="trial-switcher-title">Free Trial &mdash; <span id="trial-days-left-switcher">4 days</span> remaining</div>
+              <div class="trial-switcher-sub">Try each dashboard below — switch anytime, choose a plan when ready</div>
             </div>
-            <div style="display:flex;gap:10px;flex-wrap:wrap;">
-              <button class="trial-dash-btn" id="tdb-starter" onclick="setTrialDash('starter')">
-                <span style="font-size:18px;">⭐</span>
-                <div style="text-align:left;">
-                  <div style="font-size:13px;font-weight:700;">Starter</div>
-                  <div style="font-size:11px;opacity:.65;">£9.99/mo — essentials</div>
-                </div>
-              </button>
-              <button class="trial-dash-btn" id="tdb-pro" onclick="setTrialDash('pro')">
-                <span style="font-size:18px;">🚀</span>
-                <div style="text-align:left;">
-                  <div style="font-size:13px;font-weight:700;">Pro</div>
-                  <div style="font-size:11px;opacity:.65;">£15.99/mo — most popular</div>
-                </div>
-              </button>
-              <button class="trial-dash-btn active" id="tdb-elite" onclick="setTrialDash('elite')">
-                <span style="font-size:18px;">👑</span>
-                <div style="text-align:left;">
-                  <div style="font-size:13px;font-weight:700;">Elite</div>
-                  <div style="font-size:11px;opacity:.65;">£20.99/mo — unlimited</div>
-                </div>
-              </button>
-            </div>
+            <button onclick="openSub()" class="act-btn" style="font-size:11px;padding:6px 14px;flex-shrink:0;">Choose a plan</button>
+          </div>
+          <div class="trial-tabs-row">
+            <button class="trial-plan-tab tpt-starter" id="tdb-starter" onclick="setTrialDash('starter')">
+              <span class="tpt-dot" style="background:#3b82f6;display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
+              <div class="tpt-name">Starter</div>
+            </button>
+            <button class="trial-plan-tab tpt-pro" id="tdb-pro" onclick="setTrialDash('pro')">
+              <span class="tpt-dot" style="background:#10b981;display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
+              <div class="tpt-name">Pro</div>
+            </button>
+            <button class="trial-plan-tab tpt-elite active" id="tdb-elite" onclick="setTrialDash('elite')">
+              <span class="tpt-dot" style="background:#f59e0b;display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
+              <div class="tpt-name">Elite</div>
+            </button>
           </div>
         </div>
 
@@ -809,16 +769,16 @@ textarea.styled:focus{border-color:var(--accent);}
         <!-- Stats row -->
         <div class="stats">
           <div class="stat" onclick="goTab('ai',document.getElementById('sb-ai'))" style="cursor:pointer;">
-            <div class="stat-l">Subject</div><div class="stat-v s-pu" id="st-sub">—</div><div class="stat-s">Click → AI Tutor</div>
+            <div class="stat-l">Subject</div><div class="stat-v s-pu" id="st-sub">—</div><div class="stat-s">Click — AI Tutor</div>
           </div>
           <div class="stat">
             <div class="stat-l">Exam Board</div><div class="stat-v s-bl" id="st-board">—</div><div class="stat-s">Curriculum</div>
           </div>
           <div class="stat">
-            <div class="stat-l">🔥 Streak</div><div class="stat-v s-or" id="st-streak">1 day</div><div class="stat-s">Days in a row</div>
+            <div class="stat-l">Streak</div><div class="stat-v s-or" id="st-streak">1 day</div><div class="stat-s">Days in a row</div>
           </div>
           <div class="stat">
-            <div class="stat-l">⚡ XP</div><div class="stat-v s-gr" id="st-xp">0</div><div class="stat-s" id="st-xp-lv">Level 1</div>
+            <div class="stat-l">XP</div><div class="stat-v s-gr" id="st-xp">0</div><div class="stat-s" id="st-xp-lv">Level 1</div>
           </div>
         </div>
 
@@ -827,7 +787,7 @@ textarea.styled:focus{border-color:var(--accent);}
 
         <!-- XP bar (always shown) -->
         <div class="card" style="margin-bottom:14px;">
-          <div class="c-title">⚡ XP Progress — Level <span id="xp-lv">1</span></div>
+          <div class="c-title">XP Progress — Level <span id="xp-lv">1</span></div>
           <div class="xp-labels"><span>Level <span id="xp-lv2">1</span></span><span id="xp-txt">0 / 500 XP</span></div>
           <div class="xp-bar"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
         </div>
@@ -836,16 +796,16 @@ textarea.styled:focus{border-color:var(--accent);}
 
         <div class="two-col">
           <div class="card">
-            <div class="c-title">🚀 Quick Actions</div>
+            <div class="c-title">Quick Actions</div>
             <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;" id="quick-actions-list">
-              <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('ai',document.getElementById('sb-ai'));setTimeout(()=>{document.getElementById('ai-in').value='Give me 5 exam-style practice questions for my subject';sendAI();},300)">📝 Generate practice questions</button>
-              <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('plan',document.getElementById('sb-plan'));setTimeout(genPlan,300)">📅 Build my study plan</button>
-              <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('ai',document.getElementById('sb-ai'));setTimeout(()=>{document.getElementById('ai-in').value='Summarise the most important topics I need to know for my exam';sendAI();},300)">📚 Get topic summary</button>
-              <button class="qbtn" id="qbtn-flashcards" style="text-align:left;padding:10px 14px;" onclick="goTab('flashcards',document.getElementById('sb-flashcards'))">🃏 Open flashcards</button>
+              <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('ai',document.getElementById('sb-ai'));setTimeout(()=>{document.getElementById('ai-in').value='Give me 5 exam-style practice questions for my subject';sendAI();},300)">Generate practice questions</button>
+              <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('plan',document.getElementById('sb-plan'));setTimeout(genPlan,300)">Build my study plan</button>
+              <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('ai',document.getElementById('sb-ai'));setTimeout(()=>{document.getElementById('ai-in').value='Summarise the most important topics I need to know for my exam';sendAI();},300)">Get topic summary</button>
+              <button class="qbtn" id="qbtn-flashcards" style="text-align:left;padding:10px 14px;" onclick="goTab('flashcards',document.getElementById('sb-flashcards'))">Open flashcards</button>
             </div>
           </div>
           <div class="card">
-            <div class="c-title">📊 Study Stats</div>
+            <div class="c-title">Study Stats</div>
             <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
               <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);">
                 <span style="font-size:13px;color:var(--muted);">AI Messages sent</span>
@@ -896,7 +856,7 @@ textarea.styled:focus{border-color:var(--accent);}
           <div style="margin-top:18px;"><div class="pf-lbl" style="margin-bottom:10px;">Weak Areas</div><div class="pills" id="pf-weak"></div></div>
         </div>
         <div class="card" style="margin-bottom:14px;">
-          <div class="c-title" style="margin-bottom:14px;">🔄 Update Study Profile</div>
+          <div class="c-title" style="margin-bottom:14px;">Update Study Profile</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
             <div>
               <div class="pf-lbl" style="margin-bottom:6px;">Exam Board</div>
@@ -922,7 +882,7 @@ textarea.styled:focus{border-color:var(--accent);}
 
       <!-- STUDY PLAN -->
       <div id="tab-plan" class="d-sec">
-        <div class="sec-title">📅 Study Plan</div>
+        <div class="sec-title">Study Plan</div>
         <div class="sec-sub">AI-generated plan covering your full specification, with extra focus on your weak areas.</div>
         <div class="card" style="margin-bottom:16px;">
           <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
@@ -936,11 +896,11 @@ textarea.styled:focus{border-color:var(--accent);}
               </select>
             </div>
             <div style="padding-top:18px;">
-              <button class="act-btn" id="gen-btn" onclick="genPlan()">🚀 Generate Study Plan</button>
+              <button class="act-btn" id="gen-btn" onclick="genPlan()">Generate Study Plan</button>
             </div>
           </div>
           <div style="margin-top:12px;padding:10px 14px;background:rgba(123,77,255,.08);border:1px solid rgba(123,77,255,.15);border-radius:10px;font-size:12px;color:var(--muted);">
-            ✨ Plan is tailored to <strong id="plan-subject-label" style="color:#c4b6f9;">your subject</strong> with extra focus on your weak areas. Tick tasks as you complete them.
+            Plan is tailored to <strong id="plan-subject-label" style="color:#c4b6f9;">your subject</strong> with extra focus on your weak areas. Tick tasks as you complete them.
           </div>
         </div>
         <div id="plan-out"></div>
@@ -948,7 +908,7 @@ textarea.styled:focus{border-color:var(--accent);}
 
       <!-- WEAK TOPICS -->
       <div id="tab-weak" class="d-sec">
-        <div class="sec-title">⚠️ Weak Topics Analyser</div>
+        <div class="sec-title">Weak Topics Analyser</div>
         <div class="sec-sub">Tell the AI what you're struggling with. Get a targeted breakdown with strategies and actions.</div>
         <div class="card" style="margin-bottom:16px;">
           <div class="pf-lbl" style="margin-bottom:8px;">What are you finding difficult?</div>
@@ -966,7 +926,7 @@ textarea.styled:focus{border-color:var(--accent);}
 
       <!-- AI TUTOR -->
       <div id="tab-ai" class="d-sec">
-        <div class="sec-title">🤖 AI Tutor</div>
+        <div class="sec-title">AI Tutor</div>
         <div class="sec-sub" id="ai-plan-badge">Ask anything about your subject.</div>
         <div class="ai-wrap">
           <div class="quick-btns" id="ai-quick-btns">
@@ -992,12 +952,12 @@ textarea.styled:focus{border-color:var(--accent);}
 
       <!-- FLASHCARDS -->
       <div id="tab-flashcards" class="d-sec">
-        <div class="sec-title">🃏 Flashcards</div>
+        <div class="sec-title">Flashcards</div>
         <div class="sec-sub" id="fc-plan-sub">AI-generated flashcards for your subject and weak areas.</div>
         <div id="fc-upsell"></div>
         <div id="fc-main" style="display:none;">
           <div class="card" style="margin-bottom:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
-            <button class="act-btn" id="fc-gen-btn" onclick="genFlashcards()">✨ Generate Flashcards</button>
+            <button class="act-btn" id="fc-gen-btn" onclick="genFlashcards()">Generate Flashcards</button>
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
               <button class="qbtn" onclick="document.getElementById('fc-topic').value='my weakest topics';genFlashcards()">On weak areas</button>
               <button class="qbtn" onclick="document.getElementById('fc-topic').value='key definitions and terminology';genFlashcards()">Key definitions</button>
@@ -1019,13 +979,13 @@ textarea.styled:focus{border-color:var(--accent);}
                 <div style="display:flex;gap:8px;margin-top:8px;justify-content:center;">
                   <button onclick="markFC('hard')" style="padding:6px 14px;border-radius:8px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.3);color:#f87171;font-size:12px;cursor:pointer;">😬 Hard</button>
                   <button onclick="markFC('ok')" style="padding:6px 14px;border-radius:8px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);color:#fbbf24;font-size:12px;cursor:pointer;">🤔 Got it</button>
-                  <button onclick="markFC('easy')" style="padding:6px 14px;border-radius:8px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);color:#4ade80;font-size:12px;cursor:pointer;">✅ Easy</button>
+                  <button onclick="markFC('easy')" style="padding:6px 14px;border-radius:8px;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.3);color:#4ade80;font-size:12px;cursor:pointer;">Easy</button>
                 </div>
               </div>
               <button onclick="fcNav(1)">Next →</button>
             </div>
             <div class="card" style="margin-top:16px;">
-              <div class="c-title">📈 Session Progress</div>
+              <div class="c-title">Session Progress</div>
               <div style="display:flex;gap:20px;margin-top:8px;">
                 <div style="text-align:center;flex:1;"><div style="font-size:22px;font-weight:900;color:#f87171;" id="fc-hard">0</div><div style="font-size:11px;color:var(--dim);">Hard</div></div>
                 <div style="text-align:center;flex:1;"><div style="font-size:22px;font-weight:900;color:#fbbf24;" id="fc-ok">0</div><div style="font-size:11px;color:var(--dim);">Got it</div></div>
@@ -1038,7 +998,7 @@ textarea.styled:focus{border-color:var(--accent);}
 
       <!-- GRADE PREDICTOR -->
       <div id="tab-grade" class="d-sec">
-        <div class="sec-title">📊 Grade Predictor</div>
+        <div class="sec-title">Grade Predictor</div>
         <div class="sec-sub">Based on your current confidence, get a predicted grade and tailored advice.</div>
         <div id="grade-upsell"></div>
         <div id="grade-main" style="display:none;">
@@ -1046,8 +1006,8 @@ textarea.styled:focus{border-color:var(--accent);}
             <div class="c-title" style="margin-bottom:16px;">Rate your confidence in each weak area</div>
             <div id="grade-sliders"></div>
             <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;">
-              <button class="act-btn" onclick="calcGrade()">🎯 Predict My Grade</button>
-              <button class="qbtn" onclick="genGradeAdvice()">💡 Get advice to improve</button>
+              <button class="act-btn" onclick="calcGrade()">Predict My Grade</button>
+              <button class="qbtn" onclick="genGradeAdvice()">Get advice to improve</button>
             </div>
           </div>
           <div id="grade-result"></div>
@@ -1057,15 +1017,15 @@ textarea.styled:focus{border-color:var(--accent);}
 
       <!-- EXAM SIMULATOR -->
       <div id="tab-exam" class="d-sec">
-        <div class="sec-title">📝 Exam Simulator</div>
+        <div class="sec-title">Exam Simulator</div>
         <div class="sec-sub">Timed, exam-style questions in your subject. Choose bulk paper mode or one-question-at-a-time mode.</div>
         <div id="exam-upsell"></div>
         <div id="exam-main" style="display:none;">
           <!-- Mode selector -->
           <div class="card" style="margin-bottom:16px;">
             <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
-              <button class="exam-mode-btn active" id="mode-btn-bulk" onclick="setExamMode('bulk')">📄 Full Paper Mode</button>
-              <button class="exam-mode-btn" id="mode-btn-one" onclick="setExamMode('one')">🎯 One-by-One Mode</button>
+              <button class="exam-mode-btn active" id="mode-btn-bulk" onclick="setExamMode('bulk')">Full Paper Mode</button>
+              <button class="exam-mode-btn" id="mode-btn-one" onclick="setExamMode('one')">One-by-One Mode</button>
             </div>
             <div id="exam-bulk-opts">
               <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
@@ -1087,7 +1047,7 @@ textarea.styled:focus{border-color:var(--accent);}
                   </select>
                 </div>
                 <div style="padding-top:18px;">
-                  <button class="act-btn" id="exam-gen-btn" onclick="genExam()">🚀 Start Exam</button>
+                  <button class="act-btn" id="exam-gen-btn" onclick="genExam()">Start Exam</button>
                 </div>
               </div>
             </div>
@@ -1111,7 +1071,7 @@ textarea.styled:focus{border-color:var(--accent);}
                   </select>
                 </div>
                 <div style="padding-top:18px;">
-                  <button class="act-btn" id="exam-one-start-btn" onclick="startOneByOne()">🎯 Start Challenge</button>
+                  <button class="act-btn" id="exam-one-start-btn" onclick="startOneByOne()">Start Challenge</button>
                 </div>
               </div>
               <div id="one-by-one-session" style="display:none;margin-top:16px;"></div>
@@ -1123,7 +1083,7 @@ textarea.styled:focus{border-color:var(--accent);}
 
       <!-- PAPER TUTOR -->
       <div id="tab-paper" class="d-sec">
-        <div class="sec-title">📄 Real Exam Paper Tutor</div>
+        <div class="sec-title">Real Exam Paper Tutor</div>
         <div class="sec-sub">Generate a full exam paper for your subject. Answer each question, get it marked by AI like a real examiner — with a score, grade and detailed feedback.</div>
         <div id="paper-upsell"></div>
         <div id="paper-main" style="display:none;">
@@ -1148,11 +1108,11 @@ textarea.styled:focus{border-color:var(--accent);}
                 </select>
               </div>
               <div style="padding-top:18px;">
-                <button class="act-btn" id="paper-gen-btn" onclick="genPaperExam()">📄 Generate Exam Paper</button>
+                <button class="act-btn" id="paper-gen-btn" onclick="genPaperExam()">Generate Exam Paper</button>
               </div>
             </div>
             <div style="margin-top:12px;padding:10px 14px;background:rgba(123,77,255,.08);border:1px solid rgba(123,77,255,.15);border-radius:10px;font-size:12px;color:var(--muted);">
-              ✨ Questions are tailored to <strong id="paper-subject-lbl" style="color:#c4b6f9;">your subject</strong>. Answer each one, click Mark, and get instant examiner-style feedback with a real grade.
+              Questions are tailored to <strong id="paper-subject-lbl" style="color:#c4b6f9;">your subject</strong>. Answer each one, click Mark, and get instant examiner-style feedback with a real grade.
             </div>
           </div>
           <div id="paper-out"></div>
@@ -1513,27 +1473,24 @@ async function finishOb(){
   goDash();
 }
 
-// ── PLAN & STREAK ──
+// ── PLAN & STRIPE ──
 const TRIAL_DAYS=4;
+const SUB_DAYS=30; // subscription period
+
 function openSub(){
   document.getElementById('sub-name').textContent=PROF.name||'there';
-  // Mark current plan
   const plan=getPlan();
   ['starter','pro','elite'].forEach(p=>{
     const btn=document.getElementById('sub-btn-'+p);
     if(btn){
-      if(p===plan){btn.textContent='Current plan';btn.disabled=true;btn.style.opacity='.6';}
+      if(p===plan&&isSubActive()){btn.textContent='Current plan ✓';btn.disabled=true;btn.style.opacity='.6';}
       else{btn.textContent=p==='pro'?'Get Pro':p==='starter'?'Get Starter':'Get Elite';btn.disabled=false;btn.style.opacity='1';}
     }
   });
   showPage('subscription');
 }
 
-function trialKey(){
-  // Key by user ID — but also store email fingerprint to prevent re-signup exploit
-  if(!USER)return null;
-  return 'sf_trial_'+USER.id;
-}
+function trialKey(){if(!USER)return null;return 'sf_trial_'+USER.id;}
 function trialDaysLeft(){
   if(!USER)return 0;
   const k=trialKey();
@@ -1541,7 +1498,54 @@ function trialDaysLeft(){
   if(!s){s=Date.now();localStorage.setItem(k,s.toString());}
   return Math.max(0,TRIAL_DAYS-Math.floor((Date.now()-s)/(86400000)));
 }
+
+// Returns the stored plan type ('trial','starter','pro','elite')
 function getPlan(){return USER?localStorage.getItem('sf_plan_'+USER.id)||'trial':'trial';}
+
+// Returns when the current subscription expires (ms timestamp)
+function subExpiry(){
+  if(!USER)return 0;
+  return parseInt(localStorage.getItem('sf_sub_expiry_'+USER.id)||'0');
+}
+// Returns days left on paid subscription
+function subDaysLeft(){
+  const exp=subExpiry();
+  if(!exp)return 0;
+  return Math.max(0,Math.ceil((exp-Date.now())/(86400000)));
+}
+// Returns true if paid plan is currently active (not expired)
+function isSubActive(){
+  const plan=getPlan();
+  if(plan==='trial')return trialDaysLeft()>0;
+  return subDaysLeft()>0;
+}
+// Called when access has fully expired — lock the dashboard
+function checkAccessAndLock(){
+  const plan=getPlan();
+  if(plan==='trial'&&trialDaysLeft()<=0){showPage('subscription');return false;}
+  if(plan!=='trial'&&subDaysLeft()<=0){
+    // Subscription expired — show locked screen
+    showSubExpiredModal(plan);
+    return false;
+  }
+  return true;
+}
+function showSubExpiredModal(plan){
+  const existing=document.getElementById('sub-expired-modal');
+  if(existing)return;
+  const m=document.createElement('div');
+  m.id='sub-expired-modal';
+  m.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;';
+  m.innerHTML=`<div style="background:#15151a;border:1px solid rgba(239,68,68,.35);border-radius:20px;padding:48px 40px;width:460px;text-align:center;box-shadow:0 0 60px rgba(239,68,68,.2);">
+    <div style="font-size:48px;margin-bottom:16px;">⏰</div>
+    <div style="font-size:24px;font-weight:900;margin-bottom:8px;color:#f87171;">Subscription Expired</div>
+    <div style="color:#888;font-size:14px;margin-bottom:8px;">Your ${PLAN_NAMES[plan]||''} plan has ended.</div>
+    <div style="color:#aaa;font-size:13px;margin-bottom:28px;line-height:1.6;">We haven't received your renewal payment. Renew now to restore full access to your dashboard, study plans, and AI tutor.</div>
+    <button onclick="document.getElementById('sub-expired-modal').remove();openSub();" style="width:100%;padding:14px;background:linear-gradient(135deg,#5a2dff,#7b4dff);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:16px;cursor:pointer;margin-bottom:12px;">Renew Subscription</button>
+    <button onclick="doSignOut();" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:12px;color:#888;font-size:14px;cursor:pointer;">Sign out</button>
+  </div>`;
+  document.body.appendChild(m);
+}
 
 // ── STRIPE PAYMENT — anti-cheat via session token ──
 const STRIPE_PK='pk_live_51TbKgN0VhVdbwdBd8Sz1wHeD46CBLQOjXf5NBmTxRbdzVS2B3kiyzRzMAlj8aIl9tRz77BSqGLn7jvqGBBZ2JXeY00yrqm4W1I';
@@ -1592,13 +1596,15 @@ function checkStripeReturn(){
     tokenAge<1800000              // under 30 min old
   );
   if(valid){
-    // Mark token as used so they can't reuse it
     pending.used=true;
     localStorage.setItem('sf_pending',JSON.stringify(pending));
     // Activate plan
     localStorage.setItem('sf_plan_'+USER.id,plan);
+    // Set 30-day subscription expiry from NOW
+    const expiry=Date.now()+(SUB_DAYS*86400000);
+    localStorage.setItem('sf_sub_expiry_'+USER.id,expiry.toString());
     // Save to Supabase
-    sbPost('/rest/v1/subscriptions',{user_id:USER.id,plan,activated_at:new Date().toISOString()}).catch(()=>{});
+    sbPost('/rest/v1/subscriptions',{user_id:USER.id,plan,activated_at:new Date().toISOString(),expires_at:new Date(expiry).toISOString()}).catch(()=>{});
     // Clean URL
     window.history.replaceState({},'',window.location.pathname);
     return plan;
@@ -1611,12 +1617,17 @@ function checkStripeReturn(){
 }
 
 function showPlanUpgradeSuccess(plan){
+  const expiry=subExpiry();
+  const expiryStr=expiry?new Date(expiry).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):'30 days from now';
   const modal=document.createElement('div');
   modal.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;';
-  modal.innerHTML=`<div style="background:#15151a;border:1px solid rgba(123,77,255,.4);border-radius:20px;padding:48px 40px;width:420px;text-align:center;box-shadow:0 0 60px rgba(123,77,255,.3);">
+  modal.innerHTML=`<div style="background:#15151a;border:1px solid rgba(123,77,255,.4);border-radius:20px;padding:48px 40px;width:460px;text-align:center;box-shadow:0 0 60px rgba(123,77,255,.3);">
     <div style="width:60px;height:60px;background:linear-gradient(135deg,#5a2dff,#7b4dff);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;">✓</div>
     <div style="font-size:24px;font-weight:900;margin-bottom:8px;">You're on ${PLAN_NAMES[plan]}!</div>
-    <div style="color:#b86bff;font-size:15px;margin-bottom:24px;">${PLAN_PRICES[plan]}/month — active now</div>
+    <div style="color:#b86bff;font-size:15px;margin-bottom:8px;">${PLAN_PRICES[plan]}/month — active now</div>
+    <div style="background:rgba(123,77,255,.12);border:1px solid rgba(123,77,255,.25);border-radius:10px;padding:10px 16px;margin-bottom:20px;font-size:13px;color:#c4b6f9;">
+      Your subscription renews on <strong style="color:#fff;">${expiryStr}</strong>. If payment is not received by then, access will be suspended.
+    </div>
     <p style="color:#888;font-size:13px;margin-bottom:28px;">Your dashboard has been upgraded. Enjoy full access to all ${PLAN_NAMES[plan]} features.</p>
     <button onclick="this.closest('div[style]').remove();renderTrialBanner();populateDash();" style="padding:13px 32px;background:linear-gradient(135deg,#5a2dff,#7b4dff);border:none;border-radius:12px;color:#fff;font-weight:700;font-size:15px;cursor:pointer;">Go to dashboard</button>
   </div>`;
@@ -1640,22 +1651,60 @@ function loadStreak(){
 function goDash(){
   showPage('dashboard');
   populateDash();
-  setTimeout(()=>{animRing(0);animXP();renderTrialBanner();applyPlanToDashboard();},300);
+  setTimeout(()=>{
+    animRing(0);animXP();renderTrialBanner();applyPlanToDashboard();
+    // Check access — lock if trial/sub expired
+    checkAccessAndLock();
+    // Start a 1-minute interval to re-check in background
+    if(window._accessCheck)clearInterval(window._accessCheck);
+    window._accessCheck=setInterval(()=>{renderTrialBanner();checkAccessAndLock();},60000);
+  },300);
 }
-function updateKeyBtn(){
-  const btn=document.getElementById('nav-key-btn');
-  if(!btn)return;
+function updateNavCountdown(){
+  const el=document.getElementById('nav-countdown');if(!el)return;
+  const plan=getPlan();
+  if(plan==='trial'){
+    const d=trialDaysLeft();
+    if(d>0){el.textContent=d+'d trial left';el.style.color='var(--accent2)';el.style.display='block';}
+    else{el.textContent='Trial ended';el.style.color='#f87171';el.style.display='block';}
+  } else {
+    const d=subDaysLeft();
+    if(d<=7&&d>0){el.textContent=d+'d until renewal';el.style.color=d<=3?'#f87171':'#fbbf24';el.style.display='block';}
+    else if(d<=0){el.textContent='Subscription expired';el.style.color='#f87171';el.style.display='block';}
+    else{el.style.display='none';}
+  }
 }
 
 function renderTrialBanner(){
   const el=document.getElementById('trial-banner');if(!el)return;
   const plan=getPlan();
-  if(plan!=='trial'){el.innerHTML='';return;}
-  const days=trialDaysLeft();
+
+  if(plan==='trial'){
+    const days=trialDaysLeft();
+    el.className='trial-banner';
+    el.innerHTML=days>0
+      ?`<span class="trial-text"><strong>${days} day${days===1?'':'s'}</strong> left on your free trial — try all dashboards!</span><button class="upgrade-btn" onclick="showPage('subscription');document.getElementById('sub-name').textContent=PROF.name||'there'">Upgrade now</button>`
+      :`<span class="trial-text" style="color:#f87171"><strong>Your 4-day trial has ended.</strong> Choose a plan to keep studying.</span><button class="upgrade-btn" onclick="showPage('subscription');document.getElementById('sub-name').textContent=PROF.name||'there'">Choose a plan</button>`;
+    return;
+  }
+
+  // Paid plan — show 30-day subscription countdown
+  const daysLeft=subDaysLeft();
+  const expiry=subExpiry();
+  const expiryStr=expiry?new Date(expiry).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'';
   el.className='trial-banner';
-  el.innerHTML=days>0
-    ?`<span class="trial-text"><strong>${days} day${days===1?'':'s'}</strong> left on your free trial</span><button class="upgrade-btn" onclick="showPage('subscription');document.getElementById('sub-name').textContent=PROF.name||'there'">Upgrade now</button>`
-    :`<span class="trial-text" style="color:#f87171"><strong>Your 4-day trial has ended.</strong> Choose a plan to keep studying.</span><button class="upgrade-btn" onclick="showPage('subscription');document.getElementById('sub-name').textContent=PROF.name||'there'">Choose a plan</button>`;
+
+  if(daysLeft>7){
+    // Healthy — subtle green
+    el.innerHTML=`<span style="font-size:13px;color:#86efac;"><strong style="color:#fff;">${PLAN_NAMES[plan]||''} Plan</strong> — renews in <strong>${daysLeft} days</strong>${expiryStr?' ('+expiryStr+')':''}</span><button class="upgrade-btn" style="background:rgba(74,222,128,.2);border:1px solid rgba(74,222,128,.3);color:#86efac;" onclick="openSub()">Manage plan</button>`;
+  } else if(daysLeft>0){
+    // Warning — amber
+    el.innerHTML=`<span style="font-size:13px;color:#fbbf24;"><strong style="color:#fff;">Renewal due soon</strong> — ${daysLeft} day${daysLeft===1?'':'s'} until your ${PLAN_NAMES[plan]||''} plan expires${expiryStr?' ('+expiryStr+')':''}. Payment not received = access suspended.</span><button class="upgrade-btn" style="background:linear-gradient(135deg,#d97706,#f59e0b);" onclick="openSub()">Renew now</button>`;
+  } else {
+    // Expired — red, lock
+    el.innerHTML=`<span style="font-size:13px;color:#f87171;"><strong>Subscription expired.</strong> We haven't received payment. Renew to restore access.</span><button class="upgrade-btn" style="background:linear-gradient(135deg,#dc2626,#ef4444);" onclick="openSub()">Renew now</button>`;
+    setTimeout(()=>checkAccessAndLock(),1500);
+  }
 }
 
 function sel(id){return document.getElementById(id);}
@@ -1699,6 +1748,7 @@ function populateDash(){
   const pmd=document.getElementById('pro-msgs-disp');if(pmd)pmd.textContent=aiMsgs;
   const pfc=document.getElementById('pro-fc-disp');if(pfc)pfc.textContent=fcTotal||'0';
   animXP();
+  updateNavCountdown();
 }
 
 async function saveProfileEdits(){
@@ -1962,11 +2012,12 @@ async function sendAI(){
   } else if(attachedFile?.type==='pdf'){
     aiMsg((txt?txt+'\n':'')+'📕 '+attachedFile.name,'user');
   } else {
-    aiMsg(txt+(attachedFile?'\n📄 '+attachedFile.name:''),'user');
+    aiMsg(txt+(attachedFile?'\n'+attachedFile.name:''),'user');
   }
 
   const userContent=txt||(attachedFile?'Please analyse this.':'');
   aiHist.push({role:'user',content:userContent});
+  const pendingFile=attachedFile; // capture before clearing
   clearAttachment();
 
   document.getElementById('ai-send').disabled=true;
@@ -1999,39 +2050,42 @@ ${boardTxt!=='Not specified'?`- Reference ${boardTxt} exam style where relevant`
 
     // If there was an image attachment in the last message, use vision
     const lastHist=aiHist[aiHist.length-1];
-    if(attachedFile?.type==='image'||lastHist?._imgData){
-      const imgData=attachedFile?.data||lastHist?._imgData;
+    if(pendingFile?.type==='image'||lastHist?._imgData){
+      const imgData=pendingFile?.data||lastHist?._imgData;
       if(imgData){
         messages=[{role:'system',content:sys},{role:'user',content:[
           {type:'text',text:userContent||'Analyse this image in the context of my studies.'},
           {type:'image_url',image_url:{url:imgData}}
         ]}];
       }
-    } else if(attachedFile?.type==='pdf'){
-      // Extract PDF text and send it to AI
-      const b64=attachedFile.data.split(',')[1]||attachedFile.data;
+    } else if(pendingFile?.type==='pdf'){
+      // Extract PDF text using pdf.js and send full content to AI
+      const b64=pendingFile.data.split(',')[1]||pendingFile.data;
       let pdfText='';
       try{
-        // Use pdf.js to extract text if available, otherwise send raw note
         if(window.pdfjsLib){
           const arr=Uint8Array.from(atob(b64),c=>c.charCodeAt(0));
-          const pdf=await pdfjsLib.getDocument({data:arr}).promise;
-          const pages=Math.min(pdf.numPages,20);
+          const pdfDoc=await pdfjsLib.getDocument({data:arr}).promise;
+          const pages=Math.min(pdfDoc.numPages,25);
           for(let pi=1;pi<=pages;pi++){
-            const page=await pdf.getPage(pi);
+            const page=await pdfDoc.getPage(pi);
             const tc=await page.getTextContent();
-            pdfText+=tc.items.map(i=>i.str).join(' ')+'\n';
+            pdfText+=tc.items.map(item=>item.str).join(' ')+'\n';
           }
         }
       }catch(pe){console.warn('PDF extract failed',pe);}
-      const pdfContent=pdfText.trim().slice(0,6000);
+      const pdfContent=pdfText.trim().slice(0,8000);
       messages=[{role:'system',content:sys},{role:'user',content:pdfContent
-        ?`${userContent||'Please analyse this document.'}\n\n--- PDF CONTENT (${attachedFile.name}) ---\n${pdfContent}\n--- END OF PDF ---`
-        :`${userContent||'Please help with this document.'}\n\n[PDF attached: ${attachedFile.name} — the student has shared their study document. Based on their subject (${PROF.subject}) and profile, provide relevant help.]`
+        ?`${userContent||'Please analyse this document in the context of my studies.'}\n\n--- DOCUMENT: ${pendingFile.name} ---\n${pdfContent}\n--- END OF DOCUMENT ---`
+        :`${userContent||'Please help with this document.'}\n\n[PDF: ${pendingFile.name} — text extraction failed. Based on the student's subject (${PROF.subject}), provide what help you can from the question.]`
+      }];
+    } else if(pendingFile?.type==='text'){
+      messages=[{role:'system',content:sys},{role:'user',content:
+        `${userContent||'Please review this document.'}\n\n--- DOCUMENT: ${pendingFile.name} ---\n${pendingFile.data.slice(0,8000)}\n--- END ---`
       }];
     }
 
-    const _model=attachedFile?.type==='image'?'openai/gpt-4o':'openai/gpt-4o-mini';
+    const _model=pendingFile?.type==='image'?'openai/gpt-4o':'openai/gpt-4o-mini';
     const _max=plan==='elite'?1200:plan==='pro'?900:600;
     const r=await fetch('/api/ai',{
       method:'POST',
@@ -2070,24 +2124,30 @@ function applyPlanToDashboard(){
     chip.className='plan-chip '+(plan==='trial'?'free':plan);
   }
 
-  // Plan tier banner
-  const bannerWrap=document.getElementById('plan-tier-banner-wrap');
-  if(bannerWrap){
-    const configs={
-      trial:{cls:'free',icon:'🎓',name:'4-Day Free Trial',desc:days>0?`${days} day${days===1?'':'s'} remaining — no card needed, pick a plan to keep access`:'Trial ended — choose a plan to keep studying',btn:'<button class="upgrade-btn" onclick="openSub()">Choose a Plan →</button>'},
-      starter:{cls:'starter',icon:'⭐',name:'Starter Plan',desc:'AI Tutor · 2-week plans · Weak topic analysis · Progress tracking',btn:'<button class="upgrade-btn" style="background:rgba(59,130,246,.3);border:1px solid rgba(59,130,246,.5);" onclick="openSub()">Upgrade to Pro →</button>'},
-      pro:{cls:'pro',icon:'🚀',name:'Pro Plan',desc:'Everything in Starter + Specification-aligned AI · Grade Predictor · Exam Simulator',btn:'<button class="upgrade-btn" style="background:rgba(74,222,128,.2);border:1px solid rgba(74,222,128,.4);color:#4ade80;" onclick="openSub()">Upgrade to Elite →</button>'},
-      elite:{cls:'elite',icon:'👑',name:'Elite Plan',desc:'Unlimited everything · All features unlocked · Priority AI responses · Full spec coverage',btn:'<span style="font-size:12px;color:#fb923c;font-weight:600;">All features unlocked</span>'}
+  // Current dashboard indicator — shown at very top, tells user exactly which plan they're seeing
+  const indicator=document.getElementById('current-dash-indicator');
+  if(indicator){
+    const effectiveDashNow=(plan==='trial'&&days>0)?trialDashPlan:plan;
+    const iconfigs={
+      starter:{bg:'rgba(59,130,246,.15)',border:'rgba(59,130,246,.35)',color:'#93c5fd',label:'Starter Dashboard',sub:'Essentials — AI Tutor, 2-week plans, weak topic analysis'},
+      pro:{bg:'rgba(74,222,128,.12)',border:'rgba(74,222,128,.3)',color:'#4ade80',label:'Pro Dashboard',sub:'Specification-aligned AI, grade predictor, activity tracking'},
+      elite:{bg:'rgba(251,146,60,.15)',border:'rgba(251,146,60,.35)',color:'#fb923c',label:'Elite Dashboard',sub:'Unlimited everything — full feature access'},
+      trial:{bg:'rgba(123,77,255,.12)',border:'rgba(123,77,255,.3)',color:'#c4b6f9',label:'Free Trial',sub:days>0?days+' day'+(days===1?'':'s')+' remaining — explore every plan free':'Trial ended — choose a plan to continue'}
     };
-    const c=configs[plan]||configs.trial;
-    bannerWrap.innerHTML=`<div class="plan-tier-banner ${c.cls}">
-      <div class="plan-tier-info">
-        <div class="plan-tier-icon ${c.cls}">${c.icon}</div>
-        <div><div class="plan-tier-name">${c.name}</div><div class="plan-tier-desc">${c.desc}</div></div>
+    const ic=iconfigs[plan==='trial'?'trial':effectiveDashNow]||iconfigs.trial;
+    const dashLabel=plan==='trial'?`Free Trial — ${effectiveDashNow.charAt(0).toUpperCase()+effectiveDashNow.slice(1)} Preview`:iconfigs[plan]?.label||'Dashboard';
+    indicator.innerHTML=`<div style="background:${ic.bg};border:1px solid ${ic.border};border-radius:12px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:16px;font-weight:800;color:${ic.color};letter-spacing:-.2px;">${dashLabel}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.45);margin-top:2px;">${ic.sub}</div>
       </div>
-      <div class="plan-tier-actions">${c.btn}</div>
+      ${plan!=='elite'?`<button class="upgrade-btn" onclick="openSub()" style="font-size:12px;background:${ic.bg};border:1px solid ${ic.border};color:${ic.color};">${plan==='trial'?'Choose a Plan':'Upgrade'}</button>`:'<span style="font-size:11px;color:'+ic.color+';font-weight:600;">All features active</span>'}
     </div>`;
   }
+
+  // Plan tier banner (secondary info strip)
+  const bannerWrap=document.getElementById('plan-tier-banner-wrap');
+  if(bannerWrap){bannerWrap.innerHTML='';} // clean — indicator replaces this
 
   // ── PLAN-SPECIFIC OVERVIEW CONTENT ──
   // Show trial switcher whenever on trial plan
@@ -2164,7 +2224,7 @@ Reply ONLY with valid JSON, no markdown, no explanation:
     fcTotal+=fcCards.length;
     const sc=document.getElementById('stat-fc-count');if(sc)sc.textContent=fcTotal;
   }catch(e){alert('Failed to generate — please try again.');}
-  btn.disabled=false;btn.textContent='✨ Generate Flashcards';
+  btn.disabled=false;btn.textContent='Generate Flashcards';
 }
 
 function showFcCard(){
@@ -2238,7 +2298,7 @@ async function genGradeAdvice(){
   const prompt=`A ${PROF.subject} student${PROF.board&&!['none','no','n/a','na',''].includes(PROF.board.toLowerCase().trim())?' ('+PROF.board+')':''} has these confidence scores: ${vals.join(', ')}. Give them 4 specific, actionable tips to improve their grade. Be concise and direct. Plain text only, numbered list.`;
   try{
     const r=await ai([{role:'user',content:prompt}],400);
-    out.innerHTML=`<div class="card"><div class="c-title">💡 How to Improve Your Grade</div><div style="font-size:13px;line-height:1.8;color:var(--muted);white-space:pre-wrap;margin-top:8px;">${r}</div></div>`;
+    out.innerHTML=`<div class="card"><div class="c-title">How to Improve Your Grade</div><div style="font-size:13px;line-height:1.8;color:var(--muted);white-space:pre-wrap;margin-top:8px;">${r}</div></div>`;
   }catch(e){out.innerHTML='';}
 }
 
@@ -2271,13 +2331,13 @@ Reply ONLY with valid JSON: {"questions":[{"num":1,"question":"Full question tex
         <textarea class="exam-ans" id="exam-ans-${q.num}" placeholder="Write your answer here..." onchange="examAnswers[${q.num}]=this.value" oninput="examAnswers[${q.num}]=this.value" rows="4"></textarea>
       </div>`).join('')}
       <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
-        <button class="act-btn" onclick="markExam()">✅ Submit & Get Feedback</button>
-        <button class="qbtn" onclick="genExam()">🔄 New Paper</button>
+        <button class="act-btn" onclick="markExam()">Submit & Get Feedback</button>
+        <button class="qbtn" onclick="genExam()">New Paper</button>
       </div>
     </form>`;
     addXP(20);
   }catch(e){out.innerHTML='<div class="card" style="color:#f87171">Failed to generate — please try again.</div>';}
-  btn.disabled=false;btn.textContent='🚀 Start Exam';
+  btn.disabled=false;btn.textContent='Start Exam';
 }
 
 async function markExam(){
@@ -2320,7 +2380,7 @@ Then: TOTAL: [x]/${totalMarks} | GRADE: [letter grade] | SUMMARY: [2 sentence ov
         <div style="text-align:center;"><div style="font-size:32px;font-weight:900;color:${gradeColor};">${scored}/${possible}</div><div style="font-size:11px;color:var(--dim);">Marks</div></div>
         <div style="text-align:center;"><div style="font-size:32px;font-weight:900;color:${gradeColor};">${pct}%</div><div style="font-size:11px;color:var(--dim);">Score</div></div>
       </div>
-      <div class="c-title" style="margin-bottom:10px;">📋 Examiner Feedback</div>
+      <div class="c-title" style="margin-bottom:10px;">Examiner Feedback</div>
       <div style="font-size:13px;line-height:1.8;color:var(--muted);white-space:pre-wrap;">${r}</div>
     </div>`;
     addXP(30);
@@ -2349,7 +2409,7 @@ async function startOneByOne(){
     <div><div class="obo-prog-num" id="obo-marks-earned" style="color:#4ade80;">0</div><div class="obo-prog-lbl">Marks earned</div></div>
     <div style="height:36px;width:1px;background:rgba(255,255,255,.08);"></div>
     <div><div class="obo-prog-num" id="obo-acc" style="color:#fbbf24;">—</div><div class="obo-prog-lbl">Accuracy</div></div>
-    <div style="margin-left:auto;"><button class="qbtn" onclick="oboFinish()">📊 See Results</button></div>
+    <div style="margin-left:auto;"><button class="qbtn" onclick="oboFinish()">See Results</button></div>
   </div>
   <div id="obo-q-area"></div>`;
   await oboNextQuestion();
@@ -2380,7 +2440,7 @@ Reply ONLY with valid JSON (no markdown):
       <div class="obo-marks">${oboCurrentQ.marks} marks${oboCurrentQ.hint?' · Tip: '+oboCurrentQ.hint:''}</div>
       <textarea class="obo-ans" id="obo-ans-inp" placeholder="Write your answer here..." rows="5"></textarea>
       <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
-        <button class="act-btn" id="obo-submit-btn" onclick="oboSubmit()">✅ Submit Answer</button>
+        <button class="act-btn" id="obo-submit-btn" onclick="oboSubmit()">Submit Answer</button>
         <button class="qbtn" onclick="oboSkip()">⏭ Skip</button>
       </div>
       <div id="obo-feedback-area"></div>
@@ -2423,21 +2483,21 @@ Mark the answer. Reply ONLY with valid JSON:
         <div><div style="font-size:15px;font-weight:800;color:${col};">${pct}%</div><div style="font-size:11px;color:var(--dim);">Score</div></div>
         <div style="flex:1;"></div>
       </div>
-      <div style="font-weight:700;margin-bottom:6px;">📋 Examiner Feedback</div>
+      <div style="font-weight:700;margin-bottom:6px;">Examiner Feedback</div>
       <div style="margin-bottom:10px;">${result.feedback||''}</div>
-      <div style="font-weight:700;margin-bottom:4px;color:#c4b6f9;">✨ Model Answer</div>
+      <div style="font-weight:700;margin-bottom:4px;color:#c4b6f9;">Model Answer</div>
       <div style="color:var(--muted);font-size:12px;">${result.model_answer||''}</div>
     </div>
     <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
       <button class="act-btn" onclick="oboNextQuestion()">➡️ Next Question</button>
-      <button class="qbtn" onclick="oboFinish()">📊 See Final Results</button>
+      <button class="qbtn" onclick="oboFinish()">See Final Results</button>
     </div>`;
     addXP(15);
   }catch(e){
     const fb=document.getElementById('obo-feedback-area');
     if(fb)fb.innerHTML=`<div style="color:#f87171;font-size:13px;margin-top:10px;">Marking failed — <button class="qbtn" onclick="oboSubmit()">Retry</button></div>`;
     oboAnswered=false;
-    if(btn){btn.disabled=false;btn.textContent='✅ Submit Answer';}
+    if(btn){btn.disabled=false;btn.textContent='Submit Answer';}
   }
 }
 
@@ -2466,8 +2526,8 @@ function oboFinish(){
       ${detail}
     </div>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-      <button class="act-btn" onclick="startOneByOne()">🔄 New Session</button>
-      <button class="qbtn" onclick="goTab('ai',document.getElementById('sb-ai'));setTimeout(()=>{document.getElementById('ai-in').value='Help me improve on the questions I got wrong in my practice session';sendAI();},200)">🤖 AI Help</button>
+      <button class="act-btn" onclick="startOneByOne()">New Session</button>
+      <button class="qbtn" onclick="goTab('ai',document.getElementById('sb-ai'));setTimeout(()=>{document.getElementById('ai-in').value='Help me improve on the questions I got wrong in my practice session';sendAI();},200)">AI Help</button>
     </div>
   </div>`;
   addXP(25);
@@ -2481,11 +2541,35 @@ function setTrialDash(plan){
   trialDashPlan=plan;
   ['starter','pro','elite'].forEach(p=>{
     const btn=document.getElementById('tdb-'+p);
-    if(btn)btn.classList.toggle('active',p===plan);
+    if(!btn)return;
+    btn.classList.toggle('active',p===plan);
+    // Update inline styles for active/inactive state
+    if(p===plan){
+      btn.style.background='var(--grad)';btn.style.color='#fff';btn.style.boxShadow='0 2px 12px rgba(123,77,255,.4)';
+    } else {
+      btn.style.background='transparent';btn.style.color='rgba(255,255,255,.5)';btn.style.boxShadow='none';
+    }
   });
   const realPlan=getPlan();
   const days=trialDaysLeft();
   const active=realPlan!=='trial'||(realPlan==='trial'&&days>0);
+  // Update the current-dash-indicator to reflect the new preview
+  const indicator=document.getElementById('current-dash-indicator');
+  if(indicator){
+    const iconfigs={
+      starter:{bg:'rgba(59,130,246,.15)',border:'rgba(59,130,246,.35)',color:'#93c5fd',label:'Free Trial — Starter Preview',sub:'Essentials — AI Tutor, 2-week plans, weak topic analysis'},
+      pro:{bg:'rgba(74,222,128,.12)',border:'rgba(74,222,128,.3)',color:'#4ade80',label:'Free Trial — Pro Preview',sub:'Specification-aligned AI, grade predictor, activity tracking'},
+      elite:{bg:'rgba(251,146,60,.15)',border:'rgba(251,146,60,.35)',color:'#fb923c',label:'Free Trial — Elite Preview',sub:'Unlimited everything — full feature access, no card needed'}
+    };
+    const ic=iconfigs[plan]||iconfigs.elite;
+    indicator.innerHTML=`<div style="background:${ic.bg};border:1px solid ${ic.border};border-radius:12px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:16px;font-weight:800;color:${ic.color};letter-spacing:-.2px;">${ic.label}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.45);margin-top:2px;">${ic.sub}</div>
+      </div>
+      <button class="upgrade-btn" onclick="openSub()" style="font-size:12px;background:${ic.bg};border:1px solid ${ic.border};color:${ic.color};">Get ${plan.charAt(0).toUpperCase()+plan.slice(1)} — ${plan==='starter'?'£9.99':plan==='pro'?'£15.99':'£20.99'}/mo</button>
+    </div>`;
+  }
   renderPlanOverviewContent(plan, realPlan, days, active);
   applyFeatureGates(plan, active);
 }
@@ -2568,13 +2652,13 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
   if(dashPlan==='elite'){
     ovContent.innerHTML=`
       <div class="elite-header" style="margin-bottom:14px;">
-        <h2 style="font-size:20px;">${plan==="elite"?"👑 Elite Command Centre":days>0?"🎓 Free Trial — Elite Preview":"👑 Upgrade to Elite"}</h2>
+        <h2 style="font-size:20px;">${plan==="elite"?"Elite Command Centre":days>0?"Free Trial — Elite Preview":"Upgrade to Elite"}</h2>
         <p>${plan==="elite"?"Every tool, unlimited. You have the absolute edge.":days>0?`${days} day${days===1?"":"s"} of trial left — explore everything free, no card needed.`:"Unlock everything — unlimited AI, exam papers, 8-week plans and more."}</p>
       </div>
 
       <!-- AI Coach -->
       <div class="ai-coach-card">
-        <div class="ai-coach-avatar">🤖</div>
+        <div class="ai-coach-avatar">AI</div>
         <div class="ai-coach-body">
           <div class="ai-coach-name">AI Study Coach · Today's Message</div>
           <div class="ai-coach-msg">${coach}</div>
@@ -2593,29 +2677,29 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
       <!-- Quick action grid -->
       <div class="elite-quick-grid" style="margin-bottom:14px;">
         <div class="elite-quick-card" onclick="goTab('ai',document.getElementById('sb-ai'));setTimeout(()=>{document.getElementById('ai-in').value='Give me a deep dive on my weakest topic with worked examples, key theory and exam-style questions';sendAI();},200)">
-          <div class="elite-quick-icon">🤖</div><div><div class="elite-quick-title">Deep AI Session</div><div class="elite-quick-desc">Expert responses with mark scheme guidance</div></div>
+          <div class="elite-quick-icon" style="font-size:13px;font-weight:700;">AI</div><div><div class="elite-quick-title">Deep AI Session</div><div class="elite-quick-desc">Expert responses with mark scheme guidance</div></div>
         </div>
         <div class="elite-quick-card" onclick="goTab('exam',document.getElementById('sb-exam'));setTimeout(()=>{setExamMode('one');startOneByOne();},300)">
-          <div class="elite-quick-icon">🎯</div><div><div class="elite-quick-title">One-by-One Drill</div><div class="elite-quick-desc">Instant AI marking on each question</div></div>
+          <div class="elite-quick-icon" style="font-size:13px;font-weight:700;">Go</div><div><div class="elite-quick-title">One-by-One Drill</div><div class="elite-quick-desc">Instant AI marking on each question</div></div>
         </div>
         <div class="elite-quick-card" onclick="goTab('flashcards',document.getElementById('sb-flashcards'));setTimeout(genFlashcards,300)">
-          <div class="elite-quick-icon">🃏</div><div><div class="elite-quick-title">Smart Flashcards</div><div class="elite-quick-desc">AI decks — track hard vs easy</div></div>
+          <div class="elite-quick-icon" style="font-size:13px;font-weight:700;">FC</div><div><div class="elite-quick-title">Smart Flashcards</div><div class="elite-quick-desc">AI decks — track hard vs easy</div></div>
         </div>
         <div class="elite-quick-card" onclick="goTab('paper',document.getElementById('sb-paper'))">
-          <div class="elite-quick-icon">📄</div><div><div class="elite-quick-title">Exam Paper Tutor</div><div class="elite-quick-desc">Full paper marked like a real examiner</div></div>
+          <div class="elite-quick-icon" style="font-size:13px;font-weight:700;">PP</div><div><div class="elite-quick-title">Exam Paper Tutor</div><div class="elite-quick-desc">Full paper marked like a real examiner</div></div>
         </div>
         <div class="elite-quick-card" onclick="goTab('plan',document.getElementById('sb-plan'));setTimeout(()=>{document.getElementById('plan-weeks').value='8';genPlan();},300)">
-          <div class="elite-quick-icon">📅</div><div><div class="elite-quick-title">8-Week Master Plan</div><div class="elite-quick-desc">Full spec with extra focus on weak areas</div></div>
+          <div class="elite-quick-icon" style="font-size:13px;font-weight:700;">Plan</div><div><div class="elite-quick-title">8-Week Master Plan</div><div class="elite-quick-desc">Full spec with extra focus on weak areas</div></div>
         </div>
         <div class="elite-quick-card" onclick="goTab('grade',document.getElementById('sb-grade'))">
-          <div class="elite-quick-icon">📊</div><div><div class="elite-quick-title">Grade Predictor</div><div class="elite-quick-desc">Real-time grade from confidence sliders</div></div>
+          <div class="elite-quick-icon" style="font-size:13px;font-weight:700;">Grade</div><div><div class="elite-quick-title">Grade Predictor</div><div class="elite-quick-desc">Real-time grade from confidence sliders</div></div>
         </div>
       </div>
 
       <!-- Daily challenge + Today's targets -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
         <div class="daily-challenge" style="margin-bottom:0;">
-          <div class="daily-challenge-label">🔥 Daily Challenge</div>
+          <div class="daily-challenge-label">Daily Challenge</div>
           <h3 style="margin-bottom:6px;">Push yourself today</h3>
           <p>Complete a one-by-one drill on your weakest areas, then run the grade predictor to track your improvement.</p>
           <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
@@ -2623,7 +2707,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
           </div>
         </div>
         <div class="card" style="margin-bottom:0;">
-          <div class="c-title" style="margin-bottom:10px;">📋 Today's Targets <span style="font-size:11px;color:var(--dim);font-weight:400;">${doneTargets}/${todayTargets.length}</span></div>
+          <div class="c-title" style="margin-bottom:10px;">Today's Targets <span style="font-size:11px;color:var(--dim);font-weight:400;">${doneTargets}/${todayTargets.length}</span></div>
           <div class="targets-list" id="elite-targets">
             ${todayTargets.map((t,i)=>`<div class="target-item${t.done?' done':''}" onclick="(function(){var items=document.querySelectorAll('#elite-targets .target-item');items[${i}].classList.toggle('done');localStorage.setItem('${targetsKey}',JSON.stringify(Array.from(items).map(x=>x.classList.contains('done'))))})()"><div class="target-check">${t.done?'✓':''}</div><div class="target-text">${t.text}</div></div>`).join('')}
           </div>
@@ -2633,12 +2717,12 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
       <!-- Topic mastery + Leaderboard -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
         <div class="card">
-          <div class="c-title" style="margin-bottom:14px;">🧠 Topic Mastery</div>
+          <div class="c-title" style="margin-bottom:14px;">Topic Mastery</div>
           ${masteryBars}
           <button class="fix-btn" style="margin-top:8px;" onclick="goTab('weak',document.getElementById('sb-weak'))">Run full weak topic analysis →</button>
         </div>
         <div class="card">
-          <div class="c-title" style="margin-bottom:10px;">🏆 XP Leaderboard</div>
+          <div class="c-title" style="margin-bottom:10px;">XP Leaderboard</div>
           ${lbHTML}
           <div style="margin-top:12px;padding:8px 10px;background:rgba(123,77,255,.1);border-radius:8px;font-size:12px;color:#c4b6f9;"><span style="font-weight:700;">Level ${curLv}</span> · ${xpProg}/500 XP to next level</div>
         </div>
@@ -2646,7 +2730,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
 
       <!-- Topic map -->
       <div class="card" style="margin-bottom:14px;">
-        <div class="c-title" style="margin-bottom:4px;">🗺️ Topic Map <span style="font-size:11px;color:var(--dim);font-weight:400;">(click any topic to get AI help)</span></div>
+        <div class="c-title" style="margin-bottom:4px;">Topic Map <span style="font-size:11px;color:var(--dim);font-weight:400;">(click any topic to get AI help)</span></div>
         <div style="font-size:11px;color:var(--dim);margin-bottom:10px;"><span style="color:#fca5a5;">■</span> weak &nbsp;<span style="color:#fde68a;">■</span> improving &nbsp;<span style="color:#86efac;">■</span> strong &nbsp;<span style="color:var(--dim);">■</span> untested</div>
         <div class="topic-map">${topicMapHTML}</div>
       </div>
@@ -2656,7 +2740,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
         <div class="exam-countdown-card">
           <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
             <div>
-              <div style="font-size:10px;font-weight:700;color:#f87171;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">📅 Exam Countdown</div>
+              <div style="font-size:10px;font-weight:700;color:#f87171;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">Exam Countdown</div>
               <div style="font-size:14px;font-weight:700;">${PROF.subject||'Your exam'}</div>
             </div>
             <div style="display:flex;align-items:center;gap:6px;">
@@ -2684,7 +2768,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
       <!-- Quick notes -->
       <div class="card" style="margin-bottom:14px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-          <div class="c-title">📝 Quick Notes</div>
+          <div class="c-title">Quick Notes</div>
           <span class="notes-saved" id="notes-saved-lbl">✓ Saved</span>
         </div>
         <textarea class="notes-area" id="quick-notes-area" placeholder="Jot down anything — key formulas, reminders, ideas..." oninput="(function(){var k='${notesKey}';localStorage.setItem(k,document.getElementById('quick-notes-area').value);var l=document.getElementById('notes-saved-lbl');l.classList.add('show');clearTimeout(l._t);l._t=setTimeout(()=>l.classList.remove('show'),1500)})()">${savedNotes}</textarea>
@@ -2692,7 +2776,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
 
       <!-- 7-day activity -->
       <div class="card" style="margin-bottom:14px;">
-        <div class="c-title" style="margin-bottom:8px;">📈 7-Day Study Activity</div>
+        <div class="c-title" style="margin-bottom:8px;">7-Day Study Activity</div>
         <div class="pro-activity-chart">${actVals.map(v=>`<div class="pro-bar" style="height:${v}%"></div>`).join('')}</div>
         <div class="pro-activity-days">${actDays.map(d=>`<div class="pro-day-lbl">${d}</div>`).join('')}</div>
         <div style="font-size:11px;color:var(--dim);">Study sessions this week</div>
@@ -2700,12 +2784,12 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
 
       <!-- Goal + weak + completion -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
-        <div class="card"><div class="c-title">🎯 Goal</div><p style="color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:14px;">${PROF.goal||'Not set — edit in Profile'}</p><div class="c-title">⚠️ Weak Areas</div><div class="pills">${weakPills}</div><button class="fix-btn" style="margin-top:12px;" onclick="goTab('weak',document.getElementById('sb-weak'))">Deep analyse →</button></div>
+        <div class="card"><div class="c-title">Goal</div><p style="color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:14px;">${PROF.goal||'Not set — edit in Profile'}</p><div class="c-title">Weak Areas</div><div class="pills">${weakPills}</div><button class="fix-btn" style="margin-top:12px;" onclick="goTab('weak',document.getElementById('sb-weak'))">Deep analyse →</button></div>
         <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;"><div class="c-title">Plan Completion</div><div class="ring-wrap"><svg class="ring-svg" width="110" height="110" viewBox="0 0 110 110"><circle class="ring-bg" cx="55" cy="55" r="46"/><circle class="ring-fg" id="ring-fg" cx="55" cy="55" r="46" stroke-dasharray="289" stroke-dashoffset="289"/></svg><div style="margin-top:-95px;margin-bottom:65px;"><div class="ring-pct" id="ring-pct">0%</div><div class="ring-lbl">Tasks done</div></div></div><button class="act-btn" style="font-size:12px;padding:8px 18px;" onclick="goTab('plan',document.getElementById('sb-plan'))">View Study Plan →</button></div>
       </div>
 
       <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">${q.text}</div><div class="quote-author">— ${q.author}</div></div>
-      ${plan!=='elite'?'<div class="card" style="background:linear-gradient(135deg,rgba(251,146,60,.1),rgba(239,68,68,.07));border-color:rgba(251,146,60,.25);"><div class="c-title" style="color:#fb923c;">👑 You\'re previewing Elite</div><p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Get unlimited everything — AI, exam papers, 8-week plans, mark scheme guidance.</p><button class="act-btn" style="background:linear-gradient(135deg,#d97706,#ef4444);font-size:12px;padding:8px 18px;" onclick="openSub()">Get Elite — £20.99/mo →</button></div>':''}`;
+      ${plan!=='elite'?'<div class="card" style="background:linear-gradient(135deg,rgba(251,146,60,.1),rgba(239,68,68,.07));border-color:rgba(251,146,60,.25);"><div class="c-title" style="color:#fb923c;">You\'re previewing Elite</div><p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Get unlimited everything — AI, exam papers, 8-week plans, mark scheme guidance.</p><button class="act-btn" style="background:linear-gradient(135deg,#d97706,#ef4444);font-size:12px;padding:8px 18px;" onclick="openSub()">Get Elite — £20.99/mo →</button></div>':''}`;
 
   // ── PRO DASHBOARD ────────────────────────────────────────────────────────────
   } else if(dashPlan==='pro'){
@@ -2715,13 +2799,13 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
     ovContent.innerHTML=`
       <!-- Header badge -->
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;">
-        <div class="pro-spec-badge" style="font-size:13px;padding:7px 16px;">🚀 ${plan==="pro"?"Pro Plan — Specification-aligned AI active":days>0?"Free Trial — Pro Preview":"Upgrade to Pro"}</div>
+        <div class="pro-spec-badge" style="font-size:13px;padding:7px 16px;">${plan==="pro"?"Pro Plan — Specification-aligned AI active":days>0?"Free Trial — Pro Preview":"Upgrade to Pro"}</div>
         ${plan==='pro'?'<div class="xp-level-badge">⚡ Level '+curLv+' · '+curXp+' XP</div>':''}
       </div>
 
       <!-- AI coach -->
       <div class="ai-coach-card" style="margin-bottom:14px;">
-        <div class="ai-coach-avatar">🤖</div>
+        <div class="ai-coach-avatar">AI</div>
         <div class="ai-coach-body">
           <div class="ai-coach-name">AI Study Coach · Today's Tip</div>
           <div class="ai-coach-msg">${coach}</div>
@@ -2761,7 +2845,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
 
       <!-- 7-day activity -->
       <div class="card" style="margin-bottom:14px;">
-        <div class="c-title" style="margin-bottom:8px;">📈 7-Day Activity</div>
+        <div class="c-title" style="margin-bottom:8px;">7-Day Activity</div>
         <div class="pro-activity-chart">${actVals.map(v=>`<div class="pro-bar" style="height:${v}%"></div>`).join('')}</div>
         <div class="pro-activity-days">${actDays.map(d=>`<div class="pro-day-lbl">${d}</div>`).join('')}</div>
         <div style="font-size:11px;color:var(--dim);">Study sessions this week — keep your streak alive!</div>
@@ -2770,12 +2854,12 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
       <!-- Topic mastery + Today's targets -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
         <div class="card">
-          <div class="c-title" style="margin-bottom:12px;">🧠 Topic Mastery</div>
+          <div class="c-title" style="margin-bottom:12px;">Topic Mastery</div>
           ${masteryBars}
           <button class="fix-btn" style="margin-top:8px;" onclick="goTab('weak',document.getElementById('sb-weak'))">Analyse weak topics →</button>
         </div>
         <div class="card">
-          <div class="c-title" style="margin-bottom:10px;">📋 Today's Targets <span style="font-size:11px;color:var(--dim);font-weight:400;">${doneTargets}/${todayTargets.length}</span></div>
+          <div class="c-title" style="margin-bottom:10px;">Today's Targets <span style="font-size:11px;color:var(--dim);font-weight:400;">${doneTargets}/${todayTargets.length}</span></div>
           <div class="targets-list" id="pro-targets">
             ${todayTargets.slice(0,3).map((t,i)=>`<div class="target-item${t.done?' done':''}" onclick="(function(){var items=document.querySelectorAll('#pro-targets .target-item');items[${i}].classList.toggle('done');localStorage.setItem('${targetsKey}',JSON.stringify(Array.from(items).map(x=>x.classList.contains('done'))))})()"><div class="target-check">${t.done?'✓':''}</div><div class="target-text">${t.text}</div></div>`).join('')}
           </div>
@@ -2784,7 +2868,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
 
       <!-- Topic map -->
       <div class="card" style="margin-bottom:14px;">
-        <div class="c-title" style="margin-bottom:4px;">🗺️ Topic Map <span style="font-size:11px;color:var(--dim);font-weight:400;">(click to get AI help)</span></div>
+        <div class="c-title" style="margin-bottom:4px;">Topic Map <span style="font-size:11px;color:var(--dim);font-weight:400;">(click to get AI help)</span></div>
         <div style="font-size:11px;color:var(--dim);margin-bottom:10px;"><span style="color:#fca5a5;">■</span> weak &nbsp;<span style="color:#fde68a;">■</span> improving &nbsp;<span style="color:#86efac;">■</span> strong</div>
         <div class="topic-map">${topicMapHTML}</div>
       </div>
@@ -2792,7 +2876,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
       <!-- Quick notes -->
       <div class="card" style="margin-bottom:14px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-          <div class="c-title">📝 Quick Notes</div>
+          <div class="c-title">Quick Notes</div>
           <span class="notes-saved" id="notes-saved-lbl">✓ Saved</span>
         </div>
         <textarea class="notes-area" id="quick-notes-area" placeholder="Key formulas, reminders, anything..." oninput="(function(){localStorage.setItem('${notesKey}',this.value);var l=document.getElementById('notes-saved-lbl');l.classList.add('show');clearTimeout(l._t);l._t=setTimeout(()=>l.classList.remove('show'),1500)}).call(this)">${savedNotes}</textarea>
@@ -2800,24 +2884,24 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
 
       <!-- Quick actions -->
       <div class="card" style="margin-bottom:14px;">
-        <div class="c-title" style="margin-bottom:10px;">⚡ Quick Actions</div>
+        <div class="c-title" style="margin-bottom:10px;">Quick Actions</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('ai',document.getElementById('sb-ai'));setTimeout(()=>{document.getElementById('ai-in').value='Give me specification-aligned practice questions on my weakest areas with mark scheme guidance';sendAI();},200)">📋 Spec-aligned practice questions with mark schemes</button>
-          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('flashcards',document.getElementById('sb-flashcards'));setTimeout(genFlashcards,300)">🃏 Generate flashcard deck for my weak areas</button>
-          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('grade',document.getElementById('sb-grade'));setTimeout(()=>{renderGradeSliders();},100)">📊 Update my grade prediction</button>
-          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('plan',document.getElementById('sb-plan'));setTimeout(()=>{document.getElementById('plan-weeks').value='4';genPlan();},300)">📅 Generate 4-week study plan</button>
+          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('ai',document.getElementById('sb-ai'));setTimeout(()=>{document.getElementById('ai-in').value='Give me specification-aligned practice questions on my weakest areas with mark scheme guidance';sendAI();},200)">Spec-aligned practice questions with mark schemes</button>
+          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('flashcards',document.getElementById('sb-flashcards'));setTimeout(genFlashcards,300)">Generate flashcard deck for my weak areas</button>
+          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('grade',document.getElementById('sb-grade'));setTimeout(()=>{renderGradeSliders();},100)">Update my grade prediction</button>
+          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('plan',document.getElementById('sb-plan'));setTimeout(()=>{document.getElementById('plan-weeks').value='4';genPlan();},300)">Generate 4-week study plan</button>
         </div>
       </div>
 
       <!-- Goal + weak + plan completion -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
-        <div class="card"><div class="c-title">🎯 Goal</div><p style="color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:14px;">${PROF.goal||'Not set — edit in Profile'}</p><div class="c-title">⚠️ Weak Areas</div><div class="pills">${weakPills}</div><button class="fix-btn" style="margin-top:12px;" onclick="goTab('weak',document.getElementById('sb-weak'))">Analyse weak topics →</button></div>
+        <div class="card"><div class="c-title">Goal</div><p style="color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:14px;">${PROF.goal||'Not set — edit in Profile'}</p><div class="c-title">Weak Areas</div><div class="pills">${weakPills}</div><button class="fix-btn" style="margin-top:12px;" onclick="goTab('weak',document.getElementById('sb-weak'))">Analyse weak topics →</button></div>
         <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;"><div class="c-title">Plan Completion</div><div class="ring-wrap"><svg class="ring-svg" width="110" height="110" viewBox="0 0 110 110"><circle class="ring-bg" cx="55" cy="55" r="46"/><circle class="ring-fg" id="ring-fg" cx="55" cy="55" r="46" stroke-dasharray="289" stroke-dashoffset="289"/></svg><div style="margin-top:-95px;margin-bottom:65px;"><div class="ring-pct" id="ring-pct">0%</div><div class="ring-lbl">Tasks done</div></div></div><button class="act-btn" style="font-size:12px;padding:8px 18px;" onclick="goTab('plan',document.getElementById('sb-plan'))">View Study Plan →</button></div>
       </div>
 
       <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">${q.text}</div><div class="quote-author">— ${q.author}</div></div>
       ${plan!=='pro'&&plan!=='elite'?'<div class="card" style="background:linear-gradient(135deg,rgba(74,222,128,.08),rgba(59,130,246,.05));border-color:rgba(74,222,128,.2);"><div class="c-title" style="color:#4ade80;">🔓 This is the Pro dashboard</div><p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Get 200 AI messages/month, 4-week plans, flashcards, grade predictor, and specification-aligned responses.</p><button class="act-btn" style="background:linear-gradient(135deg,#059669,#3b82f6);font-size:12px;padding:8px 18px;" onclick="openSub()">Get Pro — £15.99/mo →</button></div>':''}
-      ${plan==='pro'?'<div class="card" style="background:linear-gradient(135deg,rgba(251,146,60,.08),rgba(239,68,68,.05));border-color:rgba(251,146,60,.2);"><div class="c-title" style="color:#fb923c;">👑 Upgrade to Elite</div><p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Unlimited messages, 8-week plans, exam simulator + AI marking, real paper tutor, daily challenges.</p><button class="act-btn" style="background:linear-gradient(135deg,#d97706,#ef4444);font-size:12px;padding:8px 18px;" onclick="openSub()">Upgrade to Elite — £20.99/mo →</button></div>':''}`;
+      ${plan==='pro'?'<div class="card" style="background:linear-gradient(135deg,rgba(251,146,60,.08),rgba(239,68,68,.05));border-color:rgba(251,146,60,.2);"><div class="c-title" style="color:#fb923c;">Upgrade to Elite</div><p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Unlimited messages, 8-week plans, exam simulator + AI marking, real paper tutor, daily challenges.</p><button class="act-btn" style="background:linear-gradient(135deg,#d97706,#ef4444);font-size:12px;padding:8px 18px;" onclick="openSub()">Upgrade to Elite — £20.99/mo →</button></div>':''}`;
 
   // ── STARTER DASHBOARD ────────────────────────────────────────────────────────
   } else {
@@ -2839,7 +2923,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
 
       <!-- AI coach -->
       <div class="ai-coach-card" style="margin-bottom:14px;">
-        <div class="ai-coach-avatar">🤖</div>
+        <div class="ai-coach-avatar">AI</div>
         <div class="ai-coach-body">
           <div class="ai-coach-name">AI Study Coach · Today's Message</div>
           <div class="ai-coach-msg">${coach}</div>
@@ -2867,7 +2951,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
       <!-- XP reward progress -->
       <div class="reward-card">
         <div class="reward-row">
-          <div class="c-title" style="margin-bottom:0;">🏅 XP Rewards</div>
+          <div class="c-title" style="margin-bottom:0;">XP Rewards</div>
           <div class="reward-badge">Next: ${nextMilestone.label}</div>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--dim);margin-bottom:5px;"><span>${curXp} XP</span><span>${nextMilestone.xp} XP</span></div>
@@ -2878,12 +2962,12 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
       <!-- Plan ring + Goal -->
       <div class="two-col" style="margin-bottom:14px;">
         <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;"><div class="c-title">Plan Completion</div><div class="ring-wrap"><svg class="ring-svg" width="110" height="110" viewBox="0 0 110 110"><circle class="ring-bg" cx="55" cy="55" r="46"/><circle class="ring-fg" id="ring-fg" cx="55" cy="55" r="46" stroke-dasharray="289" stroke-dashoffset="289"/></svg><div style="margin-top:-95px;margin-bottom:65px;"><div class="ring-pct" id="ring-pct">0%</div><div class="ring-lbl">Tasks done</div></div></div><button class="act-btn" style="font-size:12px;padding:8px 18px;" onclick="goTab('plan',document.getElementById('sb-plan'))">View Study Plan →</button></div>
-        <div class="card"><div class="c-title">🎯 Your Goal</div><p style="color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:14px;">${PROF.goal||'Not set — edit in Profile'}</p><div class="c-title">⚠️ Weak Areas</div><div class="pills">${weakPills}</div><button class="fix-btn" style="margin-top:12px;" onclick="goTab('weak',document.getElementById('sb-weak'))">Analyse weak topics →</button></div>
+        <div class="card"><div class="c-title">Your Goal</div><p style="color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:14px;">${PROF.goal||'Not set — edit in Profile'}</p><div class="c-title">Weak Areas</div><div class="pills">${weakPills}</div><button class="fix-btn" style="margin-top:12px;" onclick="goTab('weak',document.getElementById('sb-weak'))">Analyse weak topics →</button></div>
       </div>
 
       <!-- Today's targets -->
       <div class="card" style="margin-bottom:14px;">
-        <div class="c-title" style="margin-bottom:10px;">📋 Today's Targets <span style="font-size:11px;color:var(--dim);font-weight:400;">${doneTargets}/${todayTargets.slice(0,3).length} done</span></div>
+        <div class="c-title" style="margin-bottom:10px;">Today's Targets <span style="font-size:11px;color:var(--dim);font-weight:400;">${doneTargets}/${todayTargets.slice(0,3).length} done</span></div>
         <div class="targets-list" id="starter-targets">
           ${todayTargets.slice(0,3).map((t,i)=>`<div class="target-item${t.done?' done':''}" onclick="(function(){var items=document.querySelectorAll('#starter-targets .target-item');items[${i}].classList.toggle('done');localStorage.setItem('${targetsKey}',JSON.stringify(Array.from(items).map(x=>x.classList.contains('done'))))})()"><div class="target-check">${t.done?'✓':''}</div><div class="target-text">${t.text}</div></div>`).join('')}
         </div>
@@ -2891,7 +2975,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
 
       <!-- Topic mastery -->
       <div class="card" style="margin-bottom:14px;">
-        <div class="c-title" style="margin-bottom:12px;">🧠 Topic Mastery</div>
+        <div class="c-title" style="margin-bottom:12px;">Topic Mastery</div>
         ${masteryBars}
         <button class="fix-btn" style="margin-top:8px;" onclick="goTab('weak',document.getElementById('sb-weak'))">Run weak topic analysis →</button>
       </div>
@@ -2899,7 +2983,7 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
       <!-- Quick notes -->
       <div class="card" style="margin-bottom:14px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-          <div class="c-title">📝 Quick Notes</div>
+          <div class="c-title">Quick Notes</div>
           <span class="notes-saved" id="notes-saved-lbl">✓ Saved</span>
         </div>
         <textarea class="notes-area" id="quick-notes-area" placeholder="Key facts, reminders, anything..." oninput="(function(){localStorage.setItem('${notesKey}',this.value);var l=document.getElementById('notes-saved-lbl');l.classList.add('show');clearTimeout(l._t);l._t=setTimeout(()=>l.classList.remove('show'),1500)}).call(this)">${savedNotes}</textarea>
@@ -2907,12 +2991,12 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
 
       <!-- Get started -->
       <div class="card" style="margin-bottom:14px;">
-        <div class="c-title" style="margin-bottom:10px;">🚀 Get Started Now</div>
+        <div class="c-title" style="margin-bottom:10px;">Get Started Now</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('ai',document.getElementById('sb-ai'));setTimeout(()=>{document.getElementById('ai-in').value='Explain my weakest topic in simple terms with examples and a practice question';sendAI();},200)">🤖 AI explains my weakest topic</button>
-          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('plan',document.getElementById('sb-plan'));setTimeout(()=>{genPlan();},300)">📅 Generate my 2-week study plan</button>
-          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('weak',document.getElementById('sb-weak'))">⚠️ Analyse my weak topics</button>
-          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('flashcards',document.getElementById('sb-flashcards'));setTimeout(genFlashcards,300)">🃏 Generate flashcards on weak areas</button>
+          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('ai',document.getElementById('sb-ai'));setTimeout(()=>{document.getElementById('ai-in').value='Explain my weakest topic in simple terms with examples and a practice question';sendAI();},200)">AI explains my weakest topic</button>
+          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('plan',document.getElementById('sb-plan'));setTimeout(()=>{genPlan();},300)">Generate my 2-week study plan</button>
+          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('weak',document.getElementById('sb-weak'))">Analyse my weak topics</button>
+          <button class="qbtn" style="text-align:left;padding:10px 14px;" onclick="goTab('flashcards',document.getElementById('sb-flashcards'));setTimeout(genFlashcards,300)">Generate flashcards on weak areas</button>
         </div>
       </div>
 
@@ -2920,11 +3004,11 @@ function renderPlanOverviewContent(dashPlan, plan, days, active){
 
       <!-- Upgrade teaser — shows what Pro unlocks, but positively framed -->
       <div class="card" style="margin-bottom:14px;background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(123,77,255,.07));border-color:rgba(59,130,246,.25);">
-        <div class="c-title" style="color:#93c5fd;">🚀 Unlock with Pro</div>
+        <div class="c-title" style="color:#93c5fd;">Unlock with Pro</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
-          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.75);">📊 Grade Predictor</div>
-          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.75);">📋 Spec-aligned AI</div>
-          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.75);">📈 Activity chart</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.75);">Grade Predictor</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.75);">Spec-aligned AI</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.75);">Activity chart</div>
           <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.75);">💬 200 AI msgs/mo</div>
         </div>
         <button class="act-btn" style="background:linear-gradient(135deg,#059669,#3b82f6);font-size:12px;padding:8px 18px;" onclick="openSub()">${plan==="starter"?"Upgrade to Pro — £15.99/mo →":"Get Starter — £9.99/mo →"}</button>
@@ -3019,7 +3103,7 @@ Reply ONLY with valid JSON, no markdown:
     renderPaperQuestions(out);
     addXP&&addXP(10);
   }catch(e){out.innerHTML='<div style="color:#f87171;padding:20px;">Failed to generate — please try again.</div>';}
-  if(btn){btn.disabled=false;btn.textContent='📄 Generate Exam Paper';}
+  if(btn){btn.disabled=false;btn.textContent='Generate Exam Paper';}
 }
 
 function renderPaperQuestions(out){
@@ -3027,17 +3111,17 @@ function renderPaperQuestions(out){
   out.innerHTML=`<div class="paper-tutor-wrap">${paperQs.map((q,i)=>`
     <div class="paper-q-card" id="pq-${i}">
       <div class="paper-q-num">Question ${q.num} / ${paperQs.length}</div>
-      <div class="paper-marks"><span>📝</span> ${q.marks} mark${q.marks===1?'':'s'}</div>
+      <div class="paper-marks"> ${q.marks} mark${q.marks===1?'':'s'}</div>
       <div class="paper-q-text">${q.text}</div>
       <textarea class="paper-ans" id="pa-${i}" placeholder="Write your answer here..." rows="4"></textarea>
       <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
-        <button class="act-btn" style="font-size:12px;padding:8px 16px;" onclick="markPaperQ(${i})">✅ Mark this answer</button>
+        <button class="act-btn" style="font-size:12px;padding:8px 16px;" onclick="markPaperQ(${i})">Mark this answer</button>
         <button class="act-btn" style="font-size:12px;padding:8px 16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);" onclick="showModelAnswer(${i})">👁 Show model answer</button>
       </div>
       <div id="pf-${i}"></div>
     </div>`).join('')}
     <div class="card" style="margin-top:14px;display:none;" id="paper-total-score">
-      <div class="c-title" style="margin-bottom:8px;">📊 Paper Complete</div>
+      <div class="c-title" style="margin-bottom:8px;">Paper Complete</div>
       <div id="paper-score-display"></div>
     </div>
   </div>`;
@@ -3101,7 +3185,7 @@ function checkPaperComplete(){
       <div style="font-size:56px;font-weight:900;color:${pct>=70?'#4ade80':pct>=40?'#fbbf24':'#f87171'};">${grade}</div>
       <div style="font-size:24px;font-weight:700;margin-bottom:6px;">${total} / ${paperTotal} marks (${pct}%)</div>
       <div style="font-size:13px;color:var(--muted);margin-bottom:16px;">${pct>=70?'Excellent work! Keep it up.':pct>=40?'Good effort — review the missed points.':'Keep practising — use the AI tutor to strengthen weak areas.'}</div>
-      <button class="act-btn" onclick="genPaperExam()">📄 Try Another Paper</button>
+      <button class="act-btn" onclick="genPaperExam()">Try Another Paper</button>
     </div>`;
     addXP&&addXP(25);
   }
